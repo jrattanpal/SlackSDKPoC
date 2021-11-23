@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "SlackPilot",
+  "namespace": "",
+  "sfdcLoginUrl": "https://jrmdna171-dev-ed.lightning.my.salesforce.com",
+  "sourceApiVersion": "53.0"
+}
