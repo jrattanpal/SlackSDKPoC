@@ -22,8 +22,11 @@ sfdx force:org:open
 # sfdx force:data:tree:export --query "SELECT Interview_Date__c,Candidate__c,Interview_Type__c,Interviewer_Confirmed__c,Status__c FROM Interview__c LIMIT 200" --prefix slack-demo --outputdir data --plan
 
 
+#First scratch org where authentication worked
 
-Interview_Date__c": "2021-11-24T20:00:00.000+0000",
-            "Interview_Type__c": "Recruiter Interview",
-            "Interviewer_Confirmed__c": false,
-            "Status__c": "Pending"
+# sfdx force:user:password:generate --targetusername test-w76emxwtl7fz@example.com
+# pz!jiw4twSrvp
+
+
+# sfdx force:user:display -u test-w76emxwtl7fz@example.com
+# https://java-momentum-1541-dev-ed.cs96.my.salesforce.com
