@@ -1,0 +1,30 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Candidate__c",
+                "referenceId": "Candidate__cRef1"
+            },
+            "Name": "John Doe",
+            "E_mail__c": "jrattanpal@gmail.com",
+            "First_Name__c": "John",
+            "Hired__c": false,
+            "Last_Name__c": "Doe",
+            "Rating__c": 0,
+            "Status__c": "Active"
+        },
+        {
+            "attributes": {
+                "type": "Candidate__c",
+                "referenceId": "Candidate__cRef2"
+            },
+            "Name": "Will Smith",
+            "E_mail__c": "jrattanpal@gmail.com",
+            "First_Name__c": "William",
+            "Hired__c": false,
+            "Last_Name__c": "Smith",
+            "Rating__c": 0,
+            "Status__c": "Active"
+        }
+    ]
+}

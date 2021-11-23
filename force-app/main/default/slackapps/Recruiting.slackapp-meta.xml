@@ -6,7 +6,7 @@
     <clientKey>2560874297015.2764151570580</clientKey>
     <clientSecret>95fcb2b05ddc28120317edd40fd5a0df</clientSecret>
     <isProtected>false</isProtected>
-    <masterLabel>Hello Slack App</masterLabel>
+    <masterLabel>Recruiting Slack App</masterLabel>
     <signingSecret>63076755a647fc36c30ae84b0b699ca6</signingSecret>
     <userScopes>im:read,im:write,channels:read,channels:write,chat:write,groups:read,mpim:read,mpim:write,users:read,groups:write</userScopes>
 </SlackApp>

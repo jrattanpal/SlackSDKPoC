@@ -1,0 +1,26 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef1"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Interviewer_Confirmed__c": false,
+            "Status__c": "Pending",
+            "Candidate__c": "@Candidate__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef2"
+            },
+            "Interview_Date__c": "2021-11-25T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Interviewer_Confirmed__c": false,
+            "Status__c": "Pending",
+            "Candidate__c": "@Candidate__cRef2"
+        }
+    ]
+}

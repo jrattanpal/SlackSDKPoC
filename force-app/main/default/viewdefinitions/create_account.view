@@ -1,0 +1,22 @@
+description: "View that creates a new contact record by triggering an apex action on view submission."
+components:
+  - definition: modal
+    properties:
+      title: "Create Account"
+      submitLabel: "Create"
+    events:
+      onsubmit:
+        # definition maps to 'submitRecord' apex class implementing Slack.ActionDispatcher
+        definition: "apex__action__submitRecord" 
+        properties:
+          objectApiName: "Account"
+    components:
+      - definition: input
+        properties:
+          label: "Name"  # label is the field label
+          required: true
+        components:
+          - definition: textInput
+            properties:
+              name: "Name"   # name should be FieldApiName
+              placeholder: "Name"
