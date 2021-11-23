@@ -3,6 +3,7 @@ sfdx force:org:create -f config/project-scratch-def.json -a slackscratch1 -s -d 
 sfdx force:source:push
 
 sfdx force:user:permset:assign -n Slack
+sfdx force:user:permset:assign -n Recruiting_Admin
 
 sfdx force:org:open
 
