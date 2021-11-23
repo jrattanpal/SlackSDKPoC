@@ -8,8 +8,8 @@ sfdx force:user:permset:assign -n Recruiting_Admin
 sfdx force:org:open
 
 # sfdx force:user:password:generate --targetusername test-w76emxwtl7fz@example.com
-# Jbc6rq&iebpvv
+# pz!jiw4twSrvp
 
 
 # sfdx force:user:display -u test-w76emxwtl7fz@example.com
-#https://flow-nosoftware-2952-dev-ed.cs69.my.salesforce.com
+#ttps://java-momentum-1541-dev-ed.cs96.my.salesforce.com
