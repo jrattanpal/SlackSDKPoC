@@ -10,7 +10,7 @@ sfdx force:data:tree:import --plan data/slack-demo-plan.json
 sfdx force:org:open
 
 # sfdx force:user:password:generate --targetusername test-zbvp2fwfgwmp@example.com
-# hY^7ijlhkmek
+# chY^7ijlhkmek
 
 
 # sfdx force:user:display -u test-zbvp2fwfgwmp@example.com
@@ -24,9 +24,9 @@ sfdx force:org:open
 
 #First scratch org where authentication worked
 
-# sfdx force:user:password:generate --targetusername test-w76emxwtl7fz@example.com
+# sfdx force:user:password:generate --targetusername test-m8fxaarscrmy@example.com
 # pz!jiw4twSrvp
 
 
-# sfdx force:user:display -u test-w76emxwtl7fz@example.com
+# sfdx force:user:display -u test-m8fxaarscrmy@example.com
 # https://java-momentum-1541-dev-ed.cs96.my.salesforce.com
