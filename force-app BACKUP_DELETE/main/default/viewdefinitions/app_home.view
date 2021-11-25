@@ -1,0 +1,23 @@
+## YAML Template.
+---
+description: "This is a simple app home"
+schema:
+  properties:
+    bodyText:
+      type: string
+      required: true
+    headerText:
+      type: string
+      defaultValue: "Welcome Home"
+components:
+  - definition: home
+    components:
+      - definition: header
+        properties:
+          text: "{!view.properties.headerText}"
+      - definition: section
+        properties:
+          text:
+            type: "mrkdwn"
+            text: "{!view.properties.bodyText}"
+      - definition: divider
