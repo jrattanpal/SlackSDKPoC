@@ -54,6 +54,8 @@ public class ViewRecordCommandDispatcher extends Slack.SlashCommandDispatcher {
                     'Invalid Object', 
                     'The objectApiName was not a valid option. The view record command supports Account, Contact, and Opportunity'); }
           }
+          System.debug('context.getchannelId(): ' + context.getchannelId() );
+          System.debug('context.getUserId():' +  context.getUserId() );
             viewReference.setParameter('recordId', recordId);
             viewReference.setParameter('channelId', context.getchannelId());
             Slack.ModalView modalView = new Slack.ModalView.builder()
