@@ -6,10 +6,10 @@
         "files": ["slack-demo-Position__cs.json"]
     },
     {
-        "sobject": "Candidate__c",
+        "sobject": "Contact",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": ["slack-demo-Candidate__cs.json"]
+        "files": ["slack-demo-Contact__cs.json"]
     },
     {
         "sobject": "Interview__c",

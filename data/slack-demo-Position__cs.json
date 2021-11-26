@@ -9,6 +9,16 @@
             "Fullfilment_Date_Limit__c": "2021-11-30",
             "Level__c": "Architect",
             "Status__c": "Open"
+        },
+        {
+            "attributes": {
+                "type": "Position__c",
+                "referenceId": "Position__cRef2"
+            },
+            "Name": "ISV Technical Account Manager",
+            "Fullfilment_Date_Limit__c": "2021-11-30",
+            "Level__c": "Architect",
+            "Status__c": "Open"
         }
     ]
 }

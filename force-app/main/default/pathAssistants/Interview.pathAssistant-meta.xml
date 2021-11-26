@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Interview__c</entityName>
+    <fieldName>Status__c</fieldName>
+    <masterLabel>Interview</masterLabel>
+    <pathAssistantSteps>
+        <picklistValueName>Applied</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

@@ -7,20 +7,42 @@
             },
             "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
             "Interview_Type__c": "Recruiter Interview",
-            "Interviewer_Confirmed__c": false,
-            "Status__c": "Pending",
-            "Candidate__c": "@Candidate__cRef1"
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef1",
+            "Position__c": "@Position__cRef1"
         },
         {
             "attributes": {
                 "type": "Interview__c",
                 "referenceId": "Interview__cRef2"
             },
-            "Interview_Date__c": "2021-11-25T20:00:00.000+0000",
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
             "Interview_Type__c": "Recruiter Interview",
-            "Interviewer_Confirmed__c": false,
-            "Status__c": "Pending",
-            "Candidate__c": "@Candidate__cRef2"
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef1",
+            "Position__c": "@Position__cRef2"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef3"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef2",
+            "Position__c": "@Position__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef4"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef2",
+            "Position__c": "@Position__cRef2"
         }
     ]
 }
