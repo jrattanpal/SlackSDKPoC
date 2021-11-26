@@ -12,9 +12,8 @@
     <navType>Console</navType>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>Interview__c</tabs>
-    <tabs>standard-Invoice</tabs>
     <tabs>Position__c</tabs>
+    <tabs>Interview__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Recruiting_Console_UtilityBar</utilityBar>
     <workspaceConfig>
@@ -29,9 +28,6 @@
         </mappings>
         <mappings>
             <tab>standard-Contact</tab>
-        </mappings>
-        <mappings>
-            <tab>standard-Invoice</tab>
         </mappings>
     </workspaceConfig>
 </CustomApplication>

@@ -12,8 +12,8 @@
     <navType>Standard</navType>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>Interview__c</tabs>
     <tabs>Position__c</tabs>
+    <tabs>Interview__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Recruiting_UtilityBar</utilityBar>
 </CustomApplication>
