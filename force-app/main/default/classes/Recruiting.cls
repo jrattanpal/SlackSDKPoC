@@ -30,7 +30,7 @@ public with sharing class Recruiting {
 
   private static Interview__c getInterviewById(String recordId) {
     Interview__c obj = [
-        SELECT Name, Candidate__c, Status__c, Date__c, FORMAT(Interview_Date__c)
+        SELECT Name
         FROM Interview__c
         WHERE Id = :recordId
         With SECURITY_ENFORCED

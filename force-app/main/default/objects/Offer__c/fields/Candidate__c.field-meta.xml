@@ -3,7 +3,7 @@
     <fullName>Candidate__c</fullName>
     <externalId>false</externalId>
     <label>Candidate</label>
-    <referenceTo>Candidate__c</referenceTo>
+    <referenceTo>Contact</referenceTo>
     <relationshipLabel>Offers</relationshipLabel>
     <relationshipName>Offers</relationshipName>
     <relationshipOrder>0</relationshipOrder>

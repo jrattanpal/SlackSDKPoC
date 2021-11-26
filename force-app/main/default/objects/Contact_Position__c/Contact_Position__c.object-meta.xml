@@ -148,13 +148,14 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Candidate</label>
+    <label>Candidate Position</label>
     <nameField>
-        <label>Candidate Name</label>
+        <displayFormat>CP-{0000}</displayFormat>
+        <label>Candidate Position Record</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Candidates</pluralLabel>
+    <pluralLabel>Candidate Positions</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts/>
     <sharingModel>Private</sharingModel>

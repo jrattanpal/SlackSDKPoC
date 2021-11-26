@@ -21,3 +21,11 @@ components:
             type: "mrkdwn"
             text: "{!view.properties.bodyText}"
       - definition: divider
+      - definition: divider
+      - definition: actions
+        components:
+          - definition: button
+            properties:
+              name: "view_button"
+              label: "A Button Link"
+              url: "http://www.example.com"

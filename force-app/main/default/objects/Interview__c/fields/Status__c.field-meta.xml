@@ -12,14 +12,39 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Pending</fullName>
-                <default>false</default>
-                <label>Pending</label>
+                <fullName>Applied</fullName>
+                <default>true</default>
+                <label>Applied</label>
             </value>
             <value>
-                <fullName>Completed</fullName>
+                <fullName>Interview Scheduled</fullName>
                 <default>false</default>
-                <label>Completed</label>
+                <label>Interview Scheduled</label>
+            </value>
+            <value>
+                <fullName>Interview Confirmed</fullName>
+                <default>false</default>
+                <label>Interview Confirmed</label>
+            </value>
+            <value>
+                <fullName>Interview Completed</fullName>
+                <default>false</default>
+                <label>Interview Completed</label>
+            </value>
+            <value>
+                <fullName>Feedback Gathered</fullName>
+                <default>false</default>
+                <label>Feedback Gathered</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Selected</fullName>
+                <default>false</default>
+                <label>Selected</label>
             </value>
         </valueSetDefinition>
     </valueSet>

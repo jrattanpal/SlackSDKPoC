@@ -1,4 +1,4 @@
-sfdx force:org:create -f config/project-scratch-def.json -a slackscratch1 -s -d 30 
+sfdx force:org:create -f config/project-scratch-def.json -a slackscratch2 -s -d 30 
 
 sfdx force:source:push
 
@@ -9,12 +9,12 @@ sfdx force:data:tree:import --plan data/slack-demo-plan.json
 
 sfdx force:org:open
 
-# sfdx force:user:password:generate --targetusername test-zbvp2fwfgwmp@example.com
-# chY^7ijlhkmek
+# sfdx force:user:password:generate --targetusername test-xetytamuqybp@example.com 
+# qlki)or3ipuFe
 
 
-# sfdx force:user:display -u test-zbvp2fwfgwmp@example.com
-# https://fun-page-8200-dev-ed.cs97.my.salesforce.com
+# sfdx force:user:display -u test-xetytamuqybp@example.com 
+# https://energy-saas-5826-dev-ed.cs43.my.salesforce.com
 
 
 # sfdx force:data:tree:export --query "SELECT FIELDS(ALL) FROM Position__c LIMIT 200" --prefix slack-demo --outputdir data --plan

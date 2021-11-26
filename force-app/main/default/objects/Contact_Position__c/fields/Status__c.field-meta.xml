@@ -12,14 +12,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Active</fullName>
+                <fullName>Applied</fullName>
                 <default>true</default>
-                <label>Active</label>
+                <label>Applied</label>
             </value>
             <value>
-                <fullName>Inactive</fullName>
+                <fullName>Rejected</fullName>
                 <default>false</default>
-                <label>Inactive</label>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Selected</fullName>
+                <default>false</default>
+                <label>Selected</label>
+            </value>
+            <value>
+                <fullName>In Process</fullName>
+                <default>false</default>
+                <label>In Process</label>
             </value>
         </valueSetDefinition>
     </valueSet>

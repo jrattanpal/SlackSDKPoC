@@ -12,33 +12,17 @@
     <navType>Console</navType>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>Interviewer__c</tabs>
     <tabs>Interview__c</tabs>
-    <tabs>Candidate__c</tabs>
-    <tabs>Invoice__c</tabs>
     <tabs>standard-Invoice</tabs>
     <tabs>Position__c</tabs>
-    <tabs>Referral__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Recruiting_Console_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
-            <tab>Candidate__c</tab>
-        </mappings>
-        <mappings>
             <tab>Interview__c</tab>
         </mappings>
         <mappings>
-            <tab>Interviewer__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Invoice__c</tab>
-        </mappings>
-        <mappings>
             <tab>Position__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Referral__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>

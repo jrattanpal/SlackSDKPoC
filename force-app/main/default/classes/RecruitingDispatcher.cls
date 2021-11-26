@@ -44,8 +44,8 @@ public with sharing class RecruitingDispatcher extends Slack.ActionDispatcher {
         switch on action {
             when 'interview_confirm' {  
                 try{
-                    Interview__c rec = [select Id, Interviewer_Confirmed__c from Interview__c where Id=:recordId with SECURITY_ENFORCED];
-                    rec.Interviewer_Confirmed__c = true;
+                    Interview__c rec = [select Id from Interview__c where Id=:recordId with SECURITY_ENFORCED];
+                    //rec.Interviewer_Confirmed__c = true;
                     update rec;
 
                     retVal = true;
