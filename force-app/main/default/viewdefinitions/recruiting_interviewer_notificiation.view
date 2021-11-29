@@ -7,15 +7,9 @@ schema:
     recordId:
       type: string
       required: true
-    objectApiName:
+    message:
       type: string
-      required: true  
-dataproviders:
-  record:
-    definition: "apex__Recruiting.getRecord"
-    properties:
-      recordId: "{!view.properties.recordId}"
-      objectApiName: "{!view.properties.objectApiName}"     
+      required: true
 components:
   - definition: message
     components:
@@ -23,17 +17,9 @@ components:
         properties:
           text: "{!view.properties.headerText}"
       - definition: divider
-      - definition: iteration
+      - definition: section
         properties:
-          foreach: "{!record}"
-          foritem: "record"
-        components:
-          - definition: field
-            properties:
-              field: "{!record.value}"
-              label: "{!record.label}"
-      - definition: actions
-        name: "apex_actions"
+          text: "{!view.properties.message}"
         components:
           - definition: button
             properties:
@@ -43,10 +29,11 @@ components:
             events:
               onclick:
                 # definition maps to 'createRecord' apex class implementing Slack.ActionDispatcher
-                definition: "apex__action__RecruitingDispatcher"
+                definition: "apex__action__RecruitingActionDispatcher"
                 properties:
                   objectApiName: "Interview__c"
                   action: "interview_confirm"
                   recordId: "{!view.properties.recordId}"
+      - definition: divider
             
   

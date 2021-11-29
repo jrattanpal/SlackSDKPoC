@@ -1,119 +1,70 @@
 /*
-    This example apex class provides details for populating views that display a record.
-    For the methods that return a single sobject directly, see usage defined in 'view_contact', 'view_account', and 'view_opportunity.'
-    For the method that returns data in a list for an iterator, see usage in 'record_detail_message.'
+This example apex class provides details for populating views that display a record.
+For the methods that return a single sobject directly, see usage defined in 'view_contact', 'view_account', and 'view_opportunity.'
+For the method that returns data in a list for an iterator, see usage in 'record_detail_message.'
 */
 public with sharing class Recruiting {
-  private static String teamId = 'T02GGRQ8R0F';
-  private static String channelId = 'C02GXGZJ30A';
-
-  public static List<FieldData> getRecord(String recordId, String objectApiName) {
-    Sobject record; 
-    switch on objectApiName {
-      when 'Interview__c' {record = getInterviewById(recordId); }
-      when else { System.debug('record must be an Account, Contact, or Opportunity');}
-    }
-  
-    Map<String,Object> fields = record.getPopulatedFieldsAsMap();
-    List<FieldData> fieldsList = new List<FieldData>();
     
-    for (String key : fields.keySet()) {
-      FieldData fieldData = new FieldData(key, fields.get(key));
-      fieldsList.add(fieldData);
+    
+    /**
+Interview__c record = [Select Id from Interview__c limit 1];
+Recruiting.notifyInterviewerForNewInterview(record.Id, UserInfo.getUserId(),  'New Interview Scheduled');
+*/
+    //Cannot make API call from trigger so have to use @future method
+    @future
+    public static void notifyInterviewerForNewInterviewFuture(String recordId, String salesforceUserId, String headerText ){
+        notifyInterviewerForNewInterview(recordId, salesforceUserId, headerText);
     }
 
-    System.debug(fieldsList);
+    public static RecruitingUtil.Message notifyInterviewerForNewInterview(String recordId, String salesforceUserId, String headerText ){
+        RecruitingUtil.Message msg;
+        try{
 
-    return fieldsList;
-  }
+            //Check to see if the interview record exists before trying it in view
+            Interview__c interview = getInterviewDetails(recordId);
+            //text: "A new interview has been scheduled with {!interview.Contact__r.Name} for position {!interview.Position__r.Name} at {!interview.Date__c}"
 
+            String message = 'A new interview has been scheduled with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '"';
 
-  private static Interview__c getInterviewById(String recordId) {
-    Interview__c obj = [
-        SELECT Name
-        FROM Interview__c
-        WHERE Id = :recordId
-        With SECURITY_ENFORCED
-      ];
-      return obj;
-  }
+            Slack.ViewReference viewReference = Slack.View.recruiting_interviewer_notificiation.get();
+            viewReference.setParameter('headerText', headerText);
+            viewReference.setParameter('recordId', recordId);
+            viewReference.setParameter('message', message);
+            
+            RecruitingUtil.debug('viewReference:' + viewReference);
+            
+            RecruitingUtilSlack.sendViewWithSFUserId (salesforceUserId, viewReference);
+            msg = RecruitingUtil.Message.setMsg('Success', true);
+        }catch(Exception e){
+            msg = RecruitingUtil.Message.setMsg(e.getMessage(), false);
+        }
+        return msg;
+    }
+    public static RecruitingUtil.Message confirmInterview(Id recordId, String status){
+        Interview__c record = [Select Id, Status__c from Interview__c where Id=:recordId WITH SECURITY_ENFORCED];
+        
+        // Make sure we can update the database before even trying
+        if (!Schema.sObjectType.Interview__c.fields.Status__c.isUpdateable()) {
+            return RecruitingUtil.setMsg('You do not have permission to update Interview status', false);
+        }
+        record.Status__c = status;
+        update record;
+        return RecruitingUtil.setMsg('Interview has been confirmed', true);
+    }
+    
+    
+    
+    public static Interview__c getInterviewDetails(String recordId){
+        Interview__c interview = [select Id, Contact__c, Contact__r.Name , Position__c, Position__r.Name , Interview_Type__c, Interview_Date__c 
+         from Interview__c where Id=:recordId WITH SECURITY_ENFORCED];
+        System.debug(interview);
+        return interview;
+        //return [select Id, Contact__c, Contact__r.Name, Position__c, Position__r.Name, Interview_Type__c, Interview_Date__c 
+           // from Interview__c where Id=:recordId WITH SECURITY_ENFORCED];
+    }
 
-  //Recruiting.notifyWithSFUserId('0050U0000076saN', 'New Interview Scheduled', 'a030U000004odv2QAA', 'Interview__c');
-  public static Boolean sendTextWithSFUserId(String salesforceUserId, String message){
-    Slack.App app = Slack.App.Recruiting.get();
-
-    String slackUserId = app.getConnectedSlackUserId(teamId, salesforceUserId);
-    return sendTextWithSlackUserId(slackUserId, message);
-}
-public static Boolean sendTextWithSlackUserId(String slackUserId, String message){
-  Boolean retVal = false;
-  Slack.App app = Slack.App.Recruiting.get();
-
-  Slack.BotClient botClient = app.getBotClientForTeam(teamId);
-
-  Slack.ChatPostMessageRequest req = new Slack.ChatPostMessageRequest.builder()
-              .channel(slackUserId)
-              .text(message)
-              .build();
-
-  Slack.ChatPostMessageResponse response = botClient.ChatPostMessage(req);
-  if(response.getError() != null) {
-      System.debug(response.getError());
-  }else{
-    retVal = true;
-  }
-  //Slack.ChatPostMessageResponse response = botclient.chatPostMessage(req);
-  System.debug('response: ' + response.isOk()); 
-  return retVal;
-}
-
-public static Boolean sendViewWithSlackUserId(String slackUserId, Slack.ViewReference viewReference){
-  Boolean retVal = false;
-  Slack.App app = Slack.App.Recruiting.get();
-
-  Slack.BotClient botClient = app.getBotClientForTeam(teamId);
-
-  System.debug(viewReference);
-  Slack.ChatPostMessageRequest req = new Slack.ChatPostMessageRequest.builder()
-              .channel(slackUserId)
-              .viewReference(viewReference)
-              .build();
-
-  Slack.ChatPostMessageResponse response = botClient.ChatPostMessage(req);
-  if(response.getError() != null) {
-      System.debug(response.getError());
-  }else{
-    retVal = true;
-  }
-  //Slack.ChatPostMessageResponse response = botclient.chatPostMessage(req);
-  System.debug('response: ' + response.isOk()); 
-  return retVal;
-}
-  
-  //Recruiting.notifyWithSFUserId('0050U0000076saN', 'New Interview Scheduled', 'a030U000004odv2QAA', 'Interview__c');
-  public static Boolean notifyInterviewer(String salesforceUserId, String headerText, String recordId, String objectApiName){
-    Slack.App app = Slack.App.Recruiting.get();
-
-    String slackUserId = app.getConnectedSlackUserId(teamId, salesforceUserId);
-
-    Slack.ViewReference viewReference = Slack.View.recruiting_interviewer_notificiation.get();
-    viewReference.setParameter('headerText', headerText);
-    viewReference.setParameter('recordId', recordId);
-    viewReference.setParameter('objectApiName', objectApiName);
-
-    return sendViewWithSlackUserId (slackUserId, viewReference);
-}
-/*
-public static Boolean notifyWithSlackUserId(String slackUserId, String headerText, String recordId, String objectApiName){
-  Slack.ViewReference viewReference = Slack.View.recruiting_interviewer_notificiation.get();
-  viewReference.setParameter('headerText', headerText);
-  viewReference.setParameter('recordId', recordId);
-  viewReference.setParameter('objectApiName', objectApiName);
-
-  return sendViewWithSlackUserId (slackUserId, viewReference);
-
-}
-/* */
-
-  
+    
+    
+    
+    
 }
