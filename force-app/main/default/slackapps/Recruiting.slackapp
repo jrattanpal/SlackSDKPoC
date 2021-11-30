@@ -1,5 +1,10 @@
 description: End to End Apex Example App
 commands:
+  /recruiting:
+    action: 
+        definition: apex__action__RecruitingCommandDispatcher
+    title: Run Recruiting Commands
+    description: Try "/recruiting" or "/recruiting help" to see possible options
   /apex-create-record:
     action: 
         definition: apex__action__CreateRecordCommandDispatcher

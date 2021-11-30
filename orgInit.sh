@@ -30,3 +30,8 @@ sfdx force:org:open
 
 # sfdx force:user:display -u test-m8fxaarscrmy@example.com
 # https://java-momentum-1541-dev-ed.cs96.my.salesforce.com
+
+
+#AppBuilder
+#Production org—https://app-builder-for-slack.herokuapp.com
+#Sandbox or scratch org—https://app-builder-for-slack-test.herokuapp.com

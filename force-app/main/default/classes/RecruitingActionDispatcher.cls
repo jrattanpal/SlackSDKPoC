@@ -20,7 +20,7 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
             // process the form data and return the modal view that corresponds to the requested object    
             String objectApiName = (String) this.parameters.get('objectApiName');
             String recordId = (String) this.parameters.get('recordId');
-            String action = (String) this.parameters.get('action');
+            String action = (String) this.parameters.get('action'); 
 
             RecruitingUtil.Message msg;
             switch on objectApiName {
@@ -29,7 +29,7 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
                 }
                 when else { msg = RecruitingUtil.Message.setMsg('The object api name was not a valid option.', false); }
             }
-            RecruitingUtilSlack.sendTextWithSlackUserId(context.getUserId(), msg.message);
+            RecruitingUtilSlack.sendText(context.getUserId(), msg.message);
             /* */
         }
     }

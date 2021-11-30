@@ -2,54 +2,64 @@ public with sharing class RecruitingUtilSlack {
     
 
     private static String teamId = 'T02GGRQ8R0F';
-    private static String channelId = 'C02GXGZJ30A';
-    
+
+    public static String getTeamId(){
+        return teamId;
+    }
     //Recruiting.notifyWithSFUserId('0050U0000076saN', 'New Interview Scheduled', 'a030U000004odv2QAA', 'Interview__c');
-    public static Boolean sendTextWithSFUserId(String salesforceUserId, String message){
+    public static String getSlackUserId(String salesforceUserId){
         Slack.App app = Slack.App.Recruiting.get();
         
-        String slackUserId = app.getConnectedSlackUserId(teamId, salesforceUserId);
-        return sendTextWithSlackUserId(slackUserId, message);
+        return app.getConnectedSlackUserId(getTeamId(), salesforceUserId);
     }
-    //Build message to be send with .text() method for Slack.ChatPostMessageRequest
-    public static Boolean sendTextWithSlackUserId(String slackUserId, String message){
+
+     //Build message to be send with .viewReference() method for Slack.ChatPostMessageRequest
+     public static Boolean sendText(String slackUserId, String message){
         Slack.ChatPostMessageRequest req = new Slack.ChatPostMessageRequest.builder()
             .channel(slackUserId)
             .text(message)
             .build();
-        return sendWithBotClient(teamId, req);
-    }
 
-    //Recruiting.notifyWithSFUserId('0050U0000076saN', 'New Interview Scheduled', 'a030U000004odv2QAA', 'Interview__c');
-    public static Boolean sendViewWithSFUserId(String salesforceUserId, Slack.ViewReference viewReference){
-        Slack.App app = Slack.App.Recruiting.get();
-        
-        String slackUserId = app.getConnectedSlackUserId(teamId, salesforceUserId);
-        return sendViewWithSlackUserId(slackUserId, viewReference);
+            return send(req, null);
     }
     //Build message to be send with .viewReference() method for Slack.ChatPostMessageRequest
-    public static Boolean sendViewWithSlackUserId(String slackUserId, Slack.ViewReference viewReference){
+    public static Boolean sendView(String channelId, String slackUserId, Slack.ViewReference viewReference){
+        System.debug(channelId + ':' + slackUserId + ':' + viewReference);
         Slack.ChatPostMessageRequest req = new Slack.ChatPostMessageRequest.builder()
-            .channel(slackUserId)
+            .channel(channelId)
             .viewReference(viewReference)
             .build();
-        return sendWithBotClient(teamId, req);
+        return send(req, slackUserId);
     }
 
-    public static Boolean sendWithBotClient(String teamId, Slack.ChatPostMessageRequest req){
+
+    public static Boolean send(Slack.ChatPostMessageRequest req, String slackUserId){
         Boolean retVal = false;
         Slack.App app = Slack.App.Recruiting.get();
         
-        Slack.BotClient botClient = app.getBotClientForTeam(teamId);
+        System.debug('Request::' + req.toString());
+        System.debug('slackUserId:: ' + slackUserId);
+        Slack.ChatPostMessageResponse response;
+        
+        //If null then use Bot Client
+        //Else use user client
+        if(slackUserId == null){
+            System.debug('Using Bot Client');
+            Slack.BotClient botClient = app.getBotClientForTeam(getTeamId());
 
-        Slack.ChatPostMessageResponse response = botClient.ChatPostMessage(req);
-        if(response.getError() != null) {
-            RecruitingUtil.debug(response.getError());
+            response = botClient.ChatPostMessage(req);
         }else{
-            retVal = true;
+            System.debug('Using User Client');
+            Slack.UserClient userClient = app.getUserClientForTeam(getTeamId(), slackUserId);
+
+            response = userClient.ChatPostMessage(req);
         }
-        //Slack.ChatPostMessageResponse response = botclient.chatPostMessage(req);
-        RecruitingUtil.debug('response: ' + response.isOk()); 
-        return retVal;
+        
+        RecruitingUtil.debug('response: ' + response.getError()); 
+        System.debug(response);
+        System.debug(response.toString());
+
+
+        return String.IsEmpty(response.getError());
     }
 }

@@ -1,0 +1,17 @@
+description: "This component displays help for Recruiting Slash command"
+components:
+  - definition: message
+    components:
+      - definition: header
+        properties:
+          text: "Help"
+      - definition: divider
+      - definition: section
+        properties:
+          text: "'/recruiting help' to see help for Recruiting command"
+      - definition: section
+        properties:
+          text: "'/recruiting help 2' to see help for Recruiting command"
+      - definition: divider
+            
+  

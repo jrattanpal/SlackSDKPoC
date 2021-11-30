@@ -24,16 +24,17 @@ Recruiting.notifyInterviewerForNewInterview(record.Id, UserInfo.getUserId(),  'N
             Interview__c interview = getInterviewDetails(recordId);
             //text: "A new interview has been scheduled with {!interview.Contact__r.Name} for position {!interview.Position__r.Name} at {!interview.Date__c}"
 
-            String message = 'A new interview has been scheduled with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '"';
+            String message = UserInfo.getName() +', a new interview has been scheduled with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '"';
 
             Slack.ViewReference viewReference = Slack.View.recruiting_interviewer_notificiation.get();
             viewReference.setParameter('headerText', headerText);
             viewReference.setParameter('recordId', recordId);
             viewReference.setParameter('message', message);
-            
+             
             RecruitingUtil.debug('viewReference:' + viewReference);
             
-            RecruitingUtilSlack.sendViewWithSFUserId (salesforceUserId, viewReference);
+            
+            RecruitingUtilSlack.sendView(RecruitingUtilSlack.getSlackUserId(salesforceUserId), null, viewReference);
             msg = RecruitingUtil.Message.setMsg('Success', true);
         }catch(Exception e){
             msg = RecruitingUtil.Message.setMsg(e.getMessage(), false);
