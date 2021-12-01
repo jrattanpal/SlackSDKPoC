@@ -4,9 +4,6 @@ schema:
     title:
       type: string
       defaultValue: "Refer a Friend"
-    channelId:
-      type: string
-      required: false   
 components:
   - definition: modal
     properties:
@@ -26,26 +23,23 @@ components:
           label: "Contact"  # label is the field label
           required: true
         components:
-          - definition: textInput
+          - definition: externalSelect
             properties:
-              name: "Contact__c"
-              placeholder: "Search Contact"
+              placeholder: "Look up an contact by name"
+              name: "contact_lookup"
+              datasource:
+                # definition maps to 'apex__RecruitingLookupDataProvider' apex class
+                definition: "apex__RecruitingLookupDataProvider.getContactByName"
       - definition: input
         properties:
           label: "Position"  # label is the field label
           required: true
         components:
-          - definition: textInput
+          - definition: externalSelect
             properties:
-              name: "Position__c"
-              placeholder: "Search Position"
-      - definition: input
-        properties:
-          label: "Feedback"  # label is the field label
-          required: true
-        components:
-          - definition: textInput
-            properties:
-              name: "Feedback__c"   # name should be FieldApiName
-              placeholder: "Feedback"
+              placeholder: "Look up an copositionntact by name"
+              name: "position_lookup"
+              datasource:
+                # definition maps to 'apex__RecruitingLookupDataProvider' apex class
+                definition: "apex__RecruitingLookupDataProvider.getPositionByName"
 

@@ -28,10 +28,10 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
         }
 
         public void run () {
+            System.debug('context::' + context);
             // process parameters to see which action to perform
             String recordId = (String) this.parameters.get('recordId');
             String action = (String) this.parameters.get('action'); 
-            System.debug('this.parameters: ' + this.parameters);
             RecruitingUtil.Message msg;
             switch on action {
                 when 'interview_confirm' {
@@ -40,19 +40,20 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
                 when 'interview_feedback' {
                     msg = submitInterviewFeedback(context, recordId);
                 }
+                when 'refer_friend' {
+                    msg = referFriend(context, recordId);
+                }
                 when else { msg = RecruitingUtil.Message.setMsg('The action is not valid', false); }
             }
             
             //For some actions, like interview_feedback, use the channel ID provided in paramters
             //This is because the response came from a modal and chanellID is not set in context
 
-            String channelId = context.getChannelId();
-            if(context.getChannelId() == null && this.parameters.containsKey('channelId')){
+            String channelId = (context.getChannelId()==null)?context.getUserId():context.getChannelId();
+            System.debug('channelId::' + channelId);
+            if(context.getChannelId() == null && this.parameters.containsKey('channelId') && (this.parameters.get('channelId') != null)){
                 channelId = (String) this.parameters.get('channelId');
-            }else if(context.getChannelId() == null ){
-                channelId = context.getUserId();
             }
-
             RecruitingUtilSlack.sendText(channelId, msg.message);
             /* */
         }
@@ -131,6 +132,26 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
         
         
         msg = RecruitingUtil.setMsg('Feedback for interview with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '" has been submitted.', true);
+        return msg;
+    }
+    private static RecruitingUtil.Message referFriend (Slack.RequestContext context, String recordId) {
+        RecruitingUtil.Message msg;
+        // Make sure we can update the database before even trying
+        if (!Schema.sObjectType.Referral__c.isCreateable() || !Schema.sObjectType.Referral__c.fields.Contact__c.isCreateable() ||
+        !Schema.sObjectType.Referral__c.fields.Position__c.isCreateable() ||
+        !Schema.sObjectType.Referral__c.fields.user__c.isCreateable()) {
+            return RecruitingUtil.setMsg('You do not have permission to submit referral', false);
+        }
+        Map <String, Object> formData = context.getFormData();
+
+        System.debug('formData:' + formData);
+        Referral__c referral = new Referral__c();
+        referral.Contact__c = (String) formData.get('contact_lookup');
+        referral.Position__c = (String) formData.get('position_lookup');
+        referral.User__c = UserInfo.getUserId();
+        insert referral;
+        
+        msg = RecruitingUtil.setMsg('Referral has been submitted', true);
         return msg;
     }
 }
