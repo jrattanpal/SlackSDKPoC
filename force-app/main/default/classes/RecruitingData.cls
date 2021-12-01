@@ -10,14 +10,14 @@ public with sharing class RecruitingData {
         List<Interview__c> interviews = new List<Interview__c>();
         if(showOldInterviews){
 
-            interviews = [select Id, status__c, Contact__c, Contact__r.Name , Interviewer__c, Position__c, Position__r.Name , Interview_Type__c,Interview_Date__c
+            interviews = [select Id, Status__c, Feedback__c, Contact__c, Contact__r.Name , Interviewer__c, Position__c, Position__r.Name , Interview_Type__c,Interview_Date__c
                from Interview__c                 
                where Interviewer__c=:interviewerId and Status__c in ('rejected', 'selected')  
                WITH SECURITY_ENFORCED               
                order by CreatedDate desc                
                Limit :numberOfRecords ];
         }else{
-            interviews = [select Id, Status__c, Contact__c, Contact__r.Name , Interviewer__c, Position__c, Position__r.Name , Interview_Type__c,Interview_Date__c
+            interviews = [select Id, Status__c, Feedback__c, Contact__c, Contact__r.Name , Interviewer__c, Position__c, Position__r.Name , Interview_Type__c,Interview_Date__c
                 from Interview__c 
                 where Interviewer__c=:interviewerId and Status__c not in ('rejected', 'selected')
                 WITH SECURITY_ENFORCED
@@ -31,13 +31,15 @@ public with sharing class RecruitingData {
     }
 
     public class InterviewWrapper{
-        public String contactName;
-        public String positionName;
-        public String interviewType;
-        public String interviewDate;
-        public String id;
-        public String status;
-        public Boolean confirmationNeeded;
+        public String contactName = '';
+        public String positionName = '';
+        public String interviewType = '';
+        public String interviewDate = '';
+        public String id = '';
+        public String status = '';
+        public String feedback = '';
+        public Boolean confirmationNeeded = false;
+        public Boolean feedbackNeeded = false;
 
         private List<InterviewWrapper> interviews = new List<InterviewWrapper>();
 
@@ -55,6 +57,7 @@ public with sharing class RecruitingData {
                 wrapper.interviewDate = interview.Interview_Date__c.format('MMM d, y');
                 wrapper.id = interview.Id;
                 wrapper.confirmationNeeded = (interview.Interviewer__c != null && (interview.Status__c == 'Applied' || interview.Status__c == 'Interview Scheduled'))?true:false;
+                wrapper.feedbackNeeded = (interview.Interviewer__c != null && interview.Status__c == 'Interview Completed' && String.isEmpty(interview.Feedback__c))?true:false;
 
                 this.interviews.add(wrapper);
             }

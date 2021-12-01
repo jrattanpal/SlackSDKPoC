@@ -41,15 +41,4 @@ Recruiting.notifyInterviewerForNewInterview(record.Id, UserInfo.getUserId(),  'N
         }
         return msg;
     }
-    public static RecruitingUtil.Message confirmInterview(Id recordId, String status){
-        Interview__c record = RecruitingData.getInterviewDetails(recordId);
-        
-        // Make sure we can update the database before even trying
-        if (!Schema.sObjectType.Interview__c.fields.Status__c.isUpdateable()) {
-            return RecruitingUtil.setMsg('You do not have permission to update Interview status', false);
-        }
-        record.Status__c = status;
-        update record;
-        return RecruitingUtil.setMsg('Interview has been confirmed', true);
-    }   
 }

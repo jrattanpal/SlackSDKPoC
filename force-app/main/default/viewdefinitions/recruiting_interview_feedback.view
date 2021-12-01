@@ -1,0 +1,43 @@
+description: "Provide feedback for an interview"
+schema:
+  properties:
+    title:
+      type: string
+      defaultValue: "Provide feedback"
+    recordId:
+      type: string
+      required: true
+    channelId:
+      type: string
+      required: false   
+dataproviders:
+  interview:
+    definition: "apex__RecruitingData.getInterviewDetails"
+    properties:
+      recordId: "{!view.properties.recordId}"
+components:
+  - definition: modal
+    properties:
+      title: "{!view.properties.title}"
+      submitLabel: "Submit feedback"
+    events:
+      onsubmit:
+        definition: "apex__action__RecruitingActionDispatcher"
+        properties:
+          objectApiName: "Interview__c"
+          action: "interview_feedback"
+          recordId: "{!interview.Id}"
+          channelId: "{!view.properties.channelId}"
+          useModal: false  
+    components:
+      - definition: divider
+      - definition: input
+        properties:
+          label: "Feedback"  # label is the field label
+          required: true
+        components:
+          - definition: textInput
+            properties:
+              name: "Feedback__c"   # name should be FieldApiName
+              placeholder: "Feedback"
+    

@@ -41,7 +41,7 @@ components:
             visibility: "{!interview.confirmationNeeded}"
             properties:
               text:
-                text: "Please confirm your interview"
+                text: "*Confirm your interview*"
                 type: "mrkdwn"
             components:
               - definition: button
@@ -57,4 +57,26 @@ components:
                       objectApiName: "Interview__c"
                       action: "interview_confirm"
                       recordId: "{!interview.id}"
+                      useModal: false
+          - definition: section
+            visibility: "{!interview.feedbackNeeded}"
+            properties:
+              text:
+                text: "*Provide feedback*"
+                type: "mrkdwn"
+            components:
+              - definition: button
+                properties:
+                  label: "Provide Feedback"
+                  style: "primary"
+                  name: "interview_feedback"
+                events:
+                  onclick:
+                    # definition maps to 'createRecord' apex class implementing Slack.ActionDispatcher
+                    definition: "apex__action__RecruitingActionDispatcher"
+                    properties:
+                      objectApiName: "Interview__c"
+                      action: "interview_feedback"
+                      recordId: "{!interview.id}"
+                      useModal: true
           - definition: divider

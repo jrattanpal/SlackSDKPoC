@@ -46,7 +46,7 @@ public class RecruitingCommandDispatcher extends Slack.SlashCommandDispatcher {
                 String cmd =  (commandSegments.size() <= 0)?'help': commandSegments[0];
 
                 ///recruiting interviews
-                switch on commandSegments[0] {
+                switch on cmd {
                     when 'interviews' {
                         Boolean showOldInterviews = (commandSegments.size() >= 2 && commandSegments[1] =='old')?true:false;
                         //If 3rd argument is a number 0 then use that number but cap it at 25 as there can be MANY old interviews
