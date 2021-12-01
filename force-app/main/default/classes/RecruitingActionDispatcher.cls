@@ -69,41 +69,36 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
               
         public Slack.ModalView call () {      
             Slack.ModalView modal;
+            Slack.ViewReference viewReference;
 
-             String recordId = (String) this.parameters.get('recordId');
-            String channelId = (String) this.parameters.get('recordId');
+            String recordId = (String) this.parameters.get('recordId');
             String action = (String) this.parameters.get('action'); 
 
             switch on action {
                 when 'interview_feedback' {
-                    modal = interviewActionModal(context, action, recordId);
+                    viewReference = Slack.view.recruiting_interview_feedback.get();
+                    viewReference.setParameter('recordId', recordId);
+                    viewReference.setParameter('channelId', context.getchannelId());
+                    modal = new Slack.ModalView.builder()
+                        .viewReference(viewReference)
+                        .build(); 
+                }
+                when 'refer_friend' {
+                    viewReference = Slack.view.recruiting_refer_friend.get();
+                    viewReference.setParameter('channelId', context.getchannelId());
+                    modal = new Slack.ModalView.builder()
+                        .viewReference(viewReference)
+                        .build(); 
                 }
                 when else { 
                     modal = MessageModal.getMessageModalView(
                         'Invalid Parameters',
-                        'The view record command requires 2 arguments: objectApiName and recordId.'
+                        'The view record command requires 2 arguments: action and dispatcher=[ack|modal].'
                     );
                 }
             }
             return modal;
         }
-    }
-    private static Slack.ModalView interviewActionModal(Slack.RequestContext context, String action, String recordId){
-        Slack.ViewReference viewReference;
-        Slack.ModalView modalView;
-        switch on action {
-            when 'interview_feedback' { 
-                viewReference = Slack.view.recruiting_interview_feedback.get();
-                viewReference.setParameter('recordId', recordId);
-                viewReference.setParameter('channelId', context.getchannelId());
-                modalView = new Slack.ModalView.builder()
-                    .viewReference(viewReference)
-                    .build(); 
-            }
-        }
-        
-        
-        return modalView;
     }
 
     public static RecruitingUtil.Message confirmInterview(Id recordId, String status){

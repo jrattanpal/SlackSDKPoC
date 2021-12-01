@@ -1,0 +1,51 @@
+description: "Provide feedback for an interview"
+schema:
+  properties:
+    title:
+      type: string
+      defaultValue: "Refer a Friend"
+    channelId:
+      type: string
+      required: false   
+components:
+  - definition: modal
+    properties:
+      title: "{!view.properties.title}"
+      submitLabel: "Submit Referral"
+    events:
+      onsubmit:
+        definition: "apex__action__RecruitingActionDispatcher"
+        properties:
+          action: "refer_friend"
+          channelId: "{!view.properties.channelId}"
+          dispatcher: "ack"
+    components:
+      - definition: divider
+      - definition: input
+        properties:
+          label: "Contact"  # label is the field label
+          required: true
+        components:
+          - definition: textInput
+            properties:
+              name: "Contact__c"
+              placeholder: "Search Contact"
+      - definition: input
+        properties:
+          label: "Position"  # label is the field label
+          required: true
+        components:
+          - definition: textInput
+            properties:
+              name: "Position__c"
+              placeholder: "Search Position"
+      - definition: input
+        properties:
+          label: "Feedback"  # label is the field label
+          required: true
+        components:
+          - definition: textInput
+            properties:
+              name: "Feedback__c"   # name should be FieldApiName
+              placeholder: "Feedback"
+

@@ -26,6 +26,18 @@ components:
         components:
           - definition: button
             properties:
-              name: "view_button"
-              label: "A Button Link"
-              url: "http://www.example.com"
+              name: "search_jobs"
+              label: "Search Salesforce Jobs"
+              url: "https://salesforce.wd1.myworkdayjobs.com/External_Career_Site"
+          - definition: button
+            properties:
+              label: "Refer a Friend"
+              style: "primary"
+              name: "refer_friend"
+            events:
+              onclick:
+                # definition maps to 'createRecord' apex class implementing Slack.ActionDispatcher
+                definition: "apex__action__RecruitingActionDispatcher"
+                properties:
+                  action: "refer_friend"
+                  dispatcher: "modal"

@@ -26,7 +26,7 @@ public class RecruitingAppHomeOpened extends Slack.EventDispatcher {
         	String userId = event.substringBetween('user=', ',');
             
             Slack.ViewReference viewReference = Slack.View.app_home.get();
-            viewReference.setParameter('headerText', 'Welcome to the Apex Slack App Example.222');
+            viewReference.setParameter('headerText', 'Welcome to the Apex Slack App Example.');
             viewReference.setParameter('bodyText', 'To see how this custom home view was created, see the AppHomeOpened apex class.');
             Slack.HomeView homeView = new Slack.HomeView.builder()
                 .viewReference(viewReference)
