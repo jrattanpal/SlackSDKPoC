@@ -11,7 +11,13 @@ components:
           text: "'/recruiting help' to see help for Recruiting command"
       - definition: section
         properties:
-          text: "'/recruiting help 2' to see help for Recruiting command"
+          text: "'/recruiting interviews' to show upcoming scheduled interviews"
+      - definition: section
+        properties:
+          text: "'/recruiting interviews old' to show past interviews. This will show last 10 interviews. A feedback button will show with interviews where feedback has not been submitted."
+      - definition: section
+        properties:
+          text: "'/recruiting interviews old [25/all/#]' to show past interviews. A # will show those many interviews. 'all' will show all past interviews. Maximum of 25 interviews can be displayed either with number or 'all'"
       - definition: divider
             
   

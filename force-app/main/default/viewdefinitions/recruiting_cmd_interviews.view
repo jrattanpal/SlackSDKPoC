@@ -1,0 +1,60 @@
+description: "This component displays help for Recruiting Slash command"
+schema:
+  properties:
+    headerText:
+      type: string
+      defaultValue: "Interviews"
+    numberOfRecords:
+      type: number
+      defaultValue: 10
+    showOldInterviews:
+      type: boolean
+      defaultValue: false
+    interviewerId:
+      type: string
+      required: true
+dataproviders:
+  interviews:
+    definition: "apex__RecruitingData.getInterviews"
+    properties:
+      interviewerId: "{!view.properties.interviewerId}"
+      numberOfRecords: "{!view.properties.numberOfRecords}"
+      showOldInterviews: "{!view.properties.showOldInterviews}"
+components:
+  - definition: message
+    components:
+      - definition: header
+        properties:
+          text: "{!view.properties.headerText}"
+      - definition: divider
+      - definition: iteration
+        properties:
+          foreach: "{!interviews}"
+          foritem: "interview"
+        components:
+          - definition: section
+            properties:
+              text:
+                text: " *Contact*: {!interview.contactName} || *Position*: {!interview.positionName} || *Date*: {!interview.interviewDate} || *Status*: {!interview.status} "
+                type: "mrkdwn"
+          - definition: section
+            visibility: "{!interview.confirmationNeeded}"
+            properties:
+              text:
+                text: "Please confirm your interview"
+                type: "mrkdwn"
+            components:
+              - definition: button
+                properties:
+                  label: "Confirm Interview"
+                  style: "primary"
+                  name: "interview_confirm"
+                events:
+                  onclick:
+                    # definition maps to 'createRecord' apex class implementing Slack.ActionDispatcher
+                    definition: "apex__action__RecruitingActionDispatcher"
+                    properties:
+                      objectApiName: "Interview__c"
+                      action: "interview_confirm"
+                      recordId: "{!interview.id}"
+          - definition: divider

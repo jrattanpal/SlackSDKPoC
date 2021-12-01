@@ -34,4 +34,6 @@ sfdx force:org:open
 
 #AppBuilder
 #Production org—https://app-builder-for-slack.herokuapp.com
-#Sandbox or scratch org—https://app-builder-for-slack-test.herokuapp.com
+#Sandbox or scratch org— https://app-builder-for-slack-test.herokuapp.com
+
+#Sample app: https://git.soma.salesforce.com/donald-small/apex-end-to-end-example

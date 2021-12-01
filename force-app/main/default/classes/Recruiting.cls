@@ -21,7 +21,7 @@ Recruiting.notifyInterviewerForNewInterview(record.Id, UserInfo.getUserId(),  'N
         try{
 
             //Check to see if the interview record exists before trying it in view
-            Interview__c interview = getInterviewDetails(recordId);
+            Interview__c interview = RecruitingData.getInterviewDetails(recordId);
             //text: "A new interview has been scheduled with {!interview.Contact__r.Name} for position {!interview.Position__r.Name} at {!interview.Date__c}"
 
             String message = UserInfo.getName() +', a new interview has been scheduled with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '"';
@@ -42,7 +42,7 @@ Recruiting.notifyInterviewerForNewInterview(record.Id, UserInfo.getUserId(),  'N
         return msg;
     }
     public static RecruitingUtil.Message confirmInterview(Id recordId, String status){
-        Interview__c record = [Select Id, Status__c from Interview__c where Id=:recordId WITH SECURITY_ENFORCED];
+        Interview__c record = RecruitingData.getInterviewDetails(recordId);
         
         // Make sure we can update the database before even trying
         if (!Schema.sObjectType.Interview__c.fields.Status__c.isUpdateable()) {
@@ -51,21 +51,5 @@ Recruiting.notifyInterviewerForNewInterview(record.Id, UserInfo.getUserId(),  'N
         record.Status__c = status;
         update record;
         return RecruitingUtil.setMsg('Interview has been confirmed', true);
-    }
-    
-    
-    
-    public static Interview__c getInterviewDetails(String recordId){
-        Interview__c interview = [select Id, Contact__c, Contact__r.Name , Position__c, Position__r.Name , Interview_Type__c, Interview_Date__c 
-         from Interview__c where Id=:recordId WITH SECURITY_ENFORCED];
-        System.debug(interview);
-        return interview;
-        //return [select Id, Contact__c, Contact__r.Name, Position__c, Position__r.Name, Interview_Type__c, Interview_Date__c 
-           // from Interview__c where Id=:recordId WITH SECURITY_ENFORCED];
-    }
-
-    
-    
-    
-    
+    }   
 }

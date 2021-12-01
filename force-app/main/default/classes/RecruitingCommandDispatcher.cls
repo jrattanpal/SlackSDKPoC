@@ -28,22 +28,37 @@ public class RecruitingCommandDispatcher extends Slack.SlashCommandDispatcher {
         }
         
         public void run () {    
-            String commandText = parameters.getText();
-            String[] commandSegments = (commandText != null)?commandText.split(' '):new List<String>();
-            
-            
-            System.debug('commandText:: ' + commandText);
-            System.debug('commandSegments:: ' + commandSegments);
-            System.debug('context:: ' + this.context);
-            System.debug('parameters:: ' + this.parameters); 
-            
-            
-            
-            //If no params or "/recruiting help" is used then show possible commands
-            if (commandSegments.size() <= 0 || commandSegments[0] == 'help') {
-                generateHelp(context);
-            }else{
+            try{
+                String commandText = parameters.getText();
+                String[] commandSegments = (commandText != null)?commandText.split(' '):new List<String>();
+                
+                /*
+                System.debug('commandText:: ' + commandText);
+                System.debug('commandSegments:: ' + commandSegments);
+                System.debug('context:: ' + this.context);
+                System.debug('parameters:: ' + this.parameters); 
+                System.debug('UserInfo.getUserId():' + UserInfo.getUserId());
+                System.debug('UserInfo.getName():' + UserInfo.getName());
+                /* */
+                
+                
+                //If no params or "/recruiting help" is used then show possible commands
+                String cmd =  (commandSegments.size() <= 0)?'help': commandSegments[0];
 
+                ///recruiting interviews
+                switch on commandSegments[0] {
+                    when 'interviews' {
+                        Boolean showOldInterviews = (commandSegments.size() >= 2 && commandSegments[1] =='old')?true:false;
+                        //If 3rd argument is a number 0 then use that number but cap it at 25 as there can be MANY old interviews
+                        //If 3rd argument not specified then use 10
+                        Integer numberOfInterviews = (commandSegments.size() >= 3 && Integer.valueOf(commandSegments[2]) >0)?Integer.valueOf(commandSegments[2]):10;
+                        numberOfInterviews = (numberOfInterviews >25)?25:numberOfInterviews;
+                        cmdInterviews(context, numberOfInterviews, showOldInterviews);
+                    }
+                    when else { generateHelp(context); }
+                }
+            }catch(Exception e){
+                RecruitingUtil.debug(e.getMessage());
             }
         }
         
@@ -51,31 +66,22 @@ public class RecruitingCommandDispatcher extends Slack.SlashCommandDispatcher {
         private void generateHelp(Slack.RequestContext context){
             Slack.ViewReference viewReference = Slack.View.recruiting_help.get();
             
-            RecruitingUtil.debug('viewReference:' + viewReference);
-            
             //Use User client because message is started by user
             //RecruitingUtilSlack.sendView(false, context.getChannelId(), viewReference);
             RecruitingUtilSlack.sendView(context.getChannelId(), context.getUserId(), viewReference);
         }
-        
-        private Slack.ModalView viewRecord(String objectApiName, String recordId) {
-            Slack.ViewReference viewReference;
-            switch on objectApiName {
-                when 'Account' { viewReference = Slack.View.view_account.get(); }
-                when 'Contact' { viewReference = Slack.View.view_contact.get(); }
-                when 'Opportunity' { viewReference = Slack.View.view_opportunity.get(); }
-                when else { return MessageModal.getMessageModalView(
-                    'Invalid Object', 
-                    'The objectApiName was not a valid option. The view record command supports Account, Contact, and Opportunity'); }
-            }
-            System.debug('context.getchannelId(): ' + context.getchannelId() );
-            System.debug('context.getUserId():' +  context.getUserId() );
-            viewReference.setParameter('recordId', recordId);
-            viewReference.setParameter('channelId', context.getchannelId());
-            Slack.ModalView modalView = new Slack.ModalView.builder()
-                .viewReference(viewReference)
-                .build(); 
-            return modalView;
+
+        private void cmdInterviews(Slack.RequestContext context, Integer numberOfInterviews, Boolean showOldInterviews){
+
+            Slack.ViewReference viewReference = Slack.View.recruiting_cmd_interviews.get();
+            
+            viewReference.setParameter('interviewerId', UserInfo.getUserId());
+            viewReference.setParameter('showOldInterviews', showOldInterviews);
+            viewReference.setParameter('numberOfInterviews', numberOfInterviews);
+
+            //Use User client because message is started by user
+            //RecruitingUtilSlack.sendView(false, context.getChannelId(), viewReference);
+            RecruitingUtilSlack.sendView(context.getChannelId(), context.getUserId(), viewReference);
         }
     }
 }

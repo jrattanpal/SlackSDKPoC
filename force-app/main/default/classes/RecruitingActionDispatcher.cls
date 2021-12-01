@@ -29,7 +29,7 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
                 }
                 when else { msg = RecruitingUtil.Message.setMsg('The object api name was not a valid option.', false); }
             }
-            RecruitingUtilSlack.sendText(context.getUserId(), msg.message);
+            RecruitingUtilSlack.sendText(context.getChannelId(), msg.message);
             /* */
         }
     }

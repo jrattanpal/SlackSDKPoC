@@ -34,25 +34,30 @@ public with sharing class RecruitingUtilSlack {
 
 
     public static Boolean send(Slack.ChatPostMessageRequest req, String slackUserId){
+
         Boolean retVal = false;
         Slack.App app = Slack.App.Recruiting.get();
         
         Slack.ChatPostMessageResponse response;
-        
-        //If null then use Bot Client
-        //Else use user client
-        if(slackUserId == null){
-            Slack.BotClient botClient = app.getBotClientForTeam(getTeamId());
+        try{
+            
+            //If null then use Bot Client
+            //Else use user client
+            if(slackUserId == null){
+                Slack.BotClient botClient = app.getBotClientForTeam(getTeamId());
 
-            response = botClient.ChatPostMessage(req);
-        }else{
-            Slack.UserClient userClient = app.getUserClientForTeam(getTeamId(), slackUserId);
+                response = botClient.ChatPostMessage(req);
+            }else{
+                Slack.UserClient userClient = app.getUserClientForTeam(getTeamId(), slackUserId);
 
-            response = userClient.ChatPostMessage(req);
+                response = userClient.ChatPostMessage(req);
+            }
+            
+        }catch(Exception e){
+            RecruitingUtil.debug(e.getMessage());
         }
-        
-        RecruitingUtil.debug('response: ' + response.getError()); 
 
+        RecruitingUtil.debug('response: ' + response.getError()); 
         return String.IsEmpty(response.getError());
     }
 }
