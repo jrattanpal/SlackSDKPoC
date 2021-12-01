@@ -31,7 +31,7 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
             // process parameters to see which action to perform
             String recordId = (String) this.parameters.get('recordId');
             String action = (String) this.parameters.get('action'); 
-
+            System.debug('this.parameters: ' + this.parameters);
             RecruitingUtil.Message msg;
             switch on action {
                 when 'interview_confirm' {
@@ -71,6 +71,7 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
             Slack.ModalView modal;
             Slack.ViewReference viewReference;
 
+            System.debug('this.parameters: ' + this.parameters);
             String recordId = (String) this.parameters.get('recordId');
             String action = (String) this.parameters.get('action'); 
 

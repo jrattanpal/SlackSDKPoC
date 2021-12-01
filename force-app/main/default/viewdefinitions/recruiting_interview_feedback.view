@@ -26,7 +26,7 @@ components:
         definition: "apex__action__RecruitingActionDispatcher"
         properties:
           action: "interview_feedback"
-          recordId: "{!interview.Id}"
+          recordId: "{!interview.id}"
           channelId: "{!view.properties.channelId}"
           dispatcher: "ack"
     components:
