@@ -15,6 +15,7 @@ dataproviders:
     definition: "apex__RecruitingData.getInterviewDetails"
     properties:
       recordId: "{!view.properties.recordId}"
+      useWrapper: true
 components:
   - definition: modal
     properties:
@@ -24,13 +25,33 @@ components:
       onsubmit:
         definition: "apex__action__RecruitingActionDispatcher"
         properties:
-          objectApiName: "Interview__c"
           action: "interview_feedback"
-          recordId: "{!interview.Id}"
+          recordId: "{!interview.id}"
           channelId: "{!view.properties.channelId}"
-          useModal: false  
+          dispatcher: "ack"
     components:
       - definition: divider
+      - definition: section
+        properties:
+          text:
+            type: "mrkdwn"
+            text: "*Contact*"
+          fields: 
+            - text: "{!interview.contactName}"
+      - definition: section
+        properties:
+          text:
+            type: "mrkdwn"
+            text: "*Position*"
+          fields: 
+            - text: "{!interview.positionName}"
+      - definition: section
+        properties:
+          text:
+            type: "mrkdwn"
+            text: "*Interview Date*"
+          fields: 
+            - text: "{!interview.interviewDate}"
       - definition: input
         properties:
           label: "Feedback"  # label is the field label
@@ -40,4 +61,4 @@ components:
             properties:
               name: "Feedback__c"   # name should be FieldApiName
               placeholder: "Feedback"
-    
+

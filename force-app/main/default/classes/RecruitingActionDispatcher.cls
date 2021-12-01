@@ -5,11 +5,15 @@
 */
 public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatcher {
     public override Slack.ActionHandler invoke(Map<String, Object> parameters, Slack.RequestContext context) {
-        Boolean useModal = (parameters.containsKey('useModal') && parameters.get('useModal') == true)?true:false;
-        if(useModal){
-            return Slack.ActionHandler.modal(new HandlerModal(parameters, context));
-        }else{
-            return Slack.ActionHandler.ack(new HandlerAck(parameters, context));
+        String dispatcher = (parameters.containsKey('dispatcher'))?(String) parameters.get('dispatcher'):'ack';
+
+        switch on dispatcher{
+            when 'modal' {
+                return Slack.ActionHandler.modal(new HandlerModal(parameters, context));
+            }
+            when else{
+                return Slack.ActionHandler.ack(new HandlerAck(parameters, context));
+            }            
         }
     }
 
@@ -24,17 +28,19 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
         }
 
         public void run () {
-            // process the form data and return the modal view that corresponds to the requested object    
-            String objectApiName = (String) this.parameters.get('objectApiName');
+            // process parameters to see which action to perform
             String recordId = (String) this.parameters.get('recordId');
             String action = (String) this.parameters.get('action'); 
 
             RecruitingUtil.Message msg;
-            switch on objectApiName {
-                when 'Interview__c' {
-                    msg = RecruitingActionDispatcher.interviewAction(context, action, recordId);
+            switch on action {
+                when 'interview_confirm' {
+                    msg = confirmInterview(recordId, 'Interview Confirmed');
                 }
-                when else { msg = RecruitingUtil.Message.setMsg('The object api name was not a valid option.', false); }
+                when 'interview_feedback' {
+                    msg = submitInterviewFeedback(context, recordId);
+                }
+                when else { msg = RecruitingUtil.Message.setMsg('The action is not valid', false); }
             }
             
             //For some actions, like interview_feedback, use the channel ID provided in paramters
@@ -51,10 +57,8 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
             /* */
         }
     }
-
     //Modal Handler
-    public class HandlerModal implements Slack.ModalHandler {       
-      
+    public class HandlerModal implements Slack.ModalHandler { 
         Map<String, Object> parameters;
         Slack.RequestContext context;
         
@@ -62,17 +66,17 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
             this.parameters = parameters;
             this.context = context;
         }
-        
+              
         public Slack.ModalView call () {      
             Slack.ModalView modal;
 
-            String objectApiName = (String) this.parameters.get('objectApiName');
-            String recordId = (String) this.parameters.get('recordId');
+             String recordId = (String) this.parameters.get('recordId');
             String channelId = (String) this.parameters.get('recordId');
             String action = (String) this.parameters.get('action'); 
-            switch on objectApiName {
-                when 'Interview__c' {
-                    modal = RecruitingActionDispatcher.interviewActionModal(context, action, recordId);
+
+            switch on action {
+                when 'interview_feedback' {
+                    modal = interviewActionModal(context, action, recordId);
                 }
                 when else { 
                     modal = MessageModal.getMessageModalView(
@@ -102,43 +106,18 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
         return modalView;
     }
 
-    private static RecruitingUtil.Message interviewAction(Slack.RequestContext context, String action, String recordId){
-        RecruitingUtil.Message msg;
-        switch on action {
-            when 'interview_confirm' {  
-                try{
-                    msg = confirmInterview(recordId, 'Interview Confirmed');
-                }
-                catch(Exception e){
-                    System.debug(e.getMessage());
-                    msg = RecruitingUtil.Message.setMsg(e.getMessage(), false);
-                }
-            }
-            when 'interview_feedback' {  
-                try{
-                    System.debug('recordId:' + recordId);
-                    msg = submitInterviewFeedback(context, recordId);
-                }
-                catch(Exception e){
-                    System.debug(e.getMessage());
-                    msg = RecruitingUtil.Message.setMsg(e.getMessage(), false);
-                }
-            }
-            when else { msg = RecruitingUtil.Message.setMsg('The action name "' + action + '" is not a valid option.', false);}
-        }
-        return msg;
-    }
-
     public static RecruitingUtil.Message confirmInterview(Id recordId, String status){
-        Interview__c record = RecruitingData.getInterviewDetails(recordId);
+        Interview__c interview = RecruitingData.getInterviewDetails(recordId);
         
         // Make sure we can update the database before even trying
         if (!Schema.sObjectType.Interview__c.fields.Status__c.isUpdateable()) {
             return RecruitingUtil.setMsg('You do not have permission to update Interview status', false);
         }
-        record.Status__c = status;
-        update record;
-        return RecruitingUtil.setMsg('Interview has been confirmed', true);
+        interview.Status__c = status;
+        update interview;
+
+        
+        return RecruitingUtil.setMsg('Interview with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '" has been Confirmed.', true);
     }   
     private static RecruitingUtil.Message submitInterviewFeedback (Slack.RequestContext context, String recordId) {
         RecruitingUtil.Message msg;
@@ -154,7 +133,8 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
         interview.Status__c = 'Feedback Gathered';
         update interview;
         
-        msg = RecruitingUtil.setMsg('Interview feedback has been submitted', true);
+        
+        msg = RecruitingUtil.setMsg('Feedback for interview with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '" has been submitted.', true);
         return msg;
     }
 }

@@ -31,9 +31,9 @@ components:
                 # definition maps to 'createRecord' apex class implementing Slack.ActionDispatcher
                 definition: "apex__action__RecruitingActionDispatcher"
                 properties:
-                  objectApiName: "Interview__c"
                   action: "interview_confirm"
                   recordId: "{!view.properties.recordId}"
+                  dispatcher: "ack"
       - definition: divider
             
   

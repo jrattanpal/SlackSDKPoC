@@ -75,8 +75,7 @@ components:
                     # definition maps to 'createRecord' apex class implementing Slack.ActionDispatcher
                     definition: "apex__action__RecruitingActionDispatcher"
                     properties:
-                      objectApiName: "Interview__c"
                       action: "interview_feedback"
                       recordId: "{!interview.id}"
-                      useModal: true
+                      dispatcher: "modal"
           - definition: divider

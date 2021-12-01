@@ -1,7 +1,7 @@
 /*
     This example apex class is responsible for responding to the App Home Opened event
 */
-public class AppHomeOpened extends Slack.EventDispatcher {
+public class RecruitingAppHomeOpened extends Slack.EventDispatcher {
 
       public override Slack.ActionHandler invoke(Slack.EventParameters parameters, Slack.RequestContext context) {
         return Slack.ActionHandler.ack(new Handler(parameters, context));
