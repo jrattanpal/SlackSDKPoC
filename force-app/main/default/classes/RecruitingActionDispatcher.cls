@@ -93,7 +93,7 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
                         .build(); 
                 }
                 when else { 
-                    modal = MessageModal.getMessageModalView(
+                    modal = RecruitingMessageModal.getMessageModalView(
                         'Invalid Parameters',
                         'The view record command requires 2 arguments: action and dispatcher=[ack|modal].'
                     );

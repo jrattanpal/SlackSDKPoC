@@ -24,7 +24,9 @@ public class RecruitingShortcutDispatcher extends Slack.ShortcutDispatcher {
         
         public Slack.ModalView call () {      
             // return the modal view for the 'create_record' view defiition
-            Slack.ViewReference viewReference = Slack.View.create_record.get();
+            Slack.ViewReference viewReference = Slack.View.message_modal.get();
+            viewReference.setParameter('title', 'test');
+            viewReference.setParameter('message', 'test');
             Slack.ModalView modalView = new Slack.ModalView.builder()
                 .viewReference(viewReference)
                 .build(); 
