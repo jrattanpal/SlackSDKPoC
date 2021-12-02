@@ -43,6 +43,72 @@
             "Status__c": "Applied",
             "Contact__c": "@ContactRef2",
             "Position__c": "@Position__cRef2"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef5"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef3",
+            "Position__c": "@Position__cRef3"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef6"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef3",
+            "Position__c": "@Position__cRef4"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef7"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef4",
+            "Position__c": "@Position__cRef3"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef8"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef4",
+            "Position__c": "@Position__cRef4"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef9"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef1",
+            "Position__c": "@Position__cRef3"
+        },
+        {
+            "attributes": {
+                "type": "Interview__c",
+                "referenceId": "Interview__cRef10"
+            },
+            "Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "Interview_Type__c": "Recruiter Interview",
+            "Status__c": "Applied",
+            "Contact__c": "@ContactRef1",
+            "Position__c": "@Position__cRef4"
         }
     ]
 }
