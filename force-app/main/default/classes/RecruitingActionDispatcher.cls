@@ -151,7 +151,7 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
         referral.User__c = UserInfo.getUserId();
         insert referral;
         
-        msg = RecruitingUtil.setMsg('Referral has been submitted', true);
+        msg = RecruitingUtil.setMsg('Referral has been submitted: ' + URL.getSalesforceBaseUrl().toExternalForm() + '/' + referral.Id, true);
         return msg;
     }
 }

@@ -6,17 +6,17 @@ commands:
     title: Run Recruiting Commands
     description: Try "/recruiting" or "/recruiting help" to see possible options
 globalShortcuts:
-  recruiting-interview-feedback-global-shortcut:
+  recruiting-interview-review-global-shortcut:
     action: 
         definition: apex__action__RecruitingShortcutDispatcher
     title: Provide feedback
-    description: Provide feedback for completed interviews
+    description: Refer a friend
 messageShortcuts:
-  recruiting-interview-feedback-message-shortcut:
+  recruiting-interview-review-message-shortcut:
     action: 
         definition: apex__action__RecruitingShortcutDispatcher
     title: Provide feedback
-    description: Provide feedback for completed interviews
+    description: Refer a friend
 events: 
   app_home_opened:
     action:

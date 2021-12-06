@@ -22,12 +22,27 @@ public class RecruitingShortcutDispatcher extends Slack.ShortcutDispatcher {
             this.context = context;
         }
         
-        public Slack.ModalView call () {      
-            // return the modal view for the 'create_record' view defiition
-            Slack.ViewReference viewReference = Slack.View.message_modal.get();
-            viewReference.setParameter('title', 'test');
-            viewReference.setParameter('message', 'test');
-            Slack.ModalView modalView = new Slack.ModalView.builder()
+        public Slack.ModalView call () {    
+            Slack.ViewReference viewReference;
+            Slack.ModalView modalView;
+
+            String callbackId = this.parameters.getCallbackId();
+            System.debug(this.parameters);
+            System.debug(this.context);
+            
+            switch on callbackId {
+                when 'recruiting-interview-review-message-shortcut'{
+                    viewReference = Slack.view.recruiting_refer_friend.get();
+                    viewReference.setParameter('channelId', context.getchannelId());
+                }
+                when else { 
+                    modalView = RecruitingMessageModal.getMessageModalView(
+                        'Invalid Parameters',
+                        'Select a correct shortcut'
+                    );
+                }
+            }
+           modalView = new Slack.ModalView.builder()
                 .viewReference(viewReference)
                 .build(); 
             return modalView;
