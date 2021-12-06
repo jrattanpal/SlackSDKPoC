@@ -27,6 +27,7 @@ components:
         properties:
           text: "{!view.properties.headerText}"
       - definition: divider
+        properties: {}
       - definition: iteration
         properties:
           foreach: "{!interviews}"
@@ -79,3 +80,4 @@ components:
                       recordId: "{!interview.id}"
                       dispatcher: "modal"
           - definition: divider
+            properties: {}

@@ -17,6 +17,7 @@ components:
         properties:
           text: "{!view.properties.headerText}"
       - definition: divider
+        properties: {}
       - definition: section
         properties:
           text: "{!view.properties.message}"
@@ -35,5 +36,6 @@ components:
                   recordId: "{!view.properties.recordId}"
                   dispatcher: "ack"
       - definition: divider
+        properties: {}
             
   

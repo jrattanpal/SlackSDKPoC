@@ -29,6 +29,7 @@ components:
           channelId: "{!view.properties.channelId}"   
     components:
       - definition: divider
+        properties: {}
       - definition: section
         properties:
           text: "{!opportunity.Name}"

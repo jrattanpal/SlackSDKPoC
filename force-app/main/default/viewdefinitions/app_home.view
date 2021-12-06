@@ -21,7 +21,9 @@ components:
             type: "mrkdwn"
             text: "{!view.properties.bodyText}"
       - definition: divider
+        properties: {}
       - definition: divider
+        properties: {}
       - definition: actions
         components:
           - definition: button

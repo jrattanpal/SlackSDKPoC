@@ -6,6 +6,7 @@ components:
         properties:
           text: "Help"
       - definition: divider
+        properties: {}
       - definition: section
         properties:
           text: "'/recruiting help' to see help for Recruiting command"
@@ -19,5 +20,6 @@ components:
         properties:
           text: "'/recruiting interviews old [25/all/#]' to show past interviews. A # will show those many interviews. 'all' will show all past interviews. Maximum of 25 interviews can be displayed either with number or 'all'"
       - definition: divider
+        properties: {}
             
   

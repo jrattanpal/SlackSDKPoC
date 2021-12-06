@@ -23,6 +23,7 @@ components:
         properties:
           text: "{!view.properties.headerText}"
       - definition: divider
+        properties: {}
       - definition: iteration
         properties:
           foreach: "{!record}"
