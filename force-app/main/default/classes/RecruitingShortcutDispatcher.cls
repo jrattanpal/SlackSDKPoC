@@ -9,7 +9,7 @@ public class RecruitingShortcutDispatcher extends Slack.ShortcutDispatcher {
         System.debug('parameters'  +parameters);
         System.debug('context'  +context);
         // the slack action handler should immediately be returned 
-        return Slack.ActionHandler.modal(new Handler(parameters, context), 'Create Record');
+        return Slack.ActionHandler.modal(new Handler(parameters, context), 'Recruiting');
     }
     
     public class Handler implements Slack.ModalHandler {

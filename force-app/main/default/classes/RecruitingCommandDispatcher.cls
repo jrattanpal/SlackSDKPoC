@@ -53,9 +53,9 @@ public class RecruitingCommandDispatcher extends Slack.SlashCommandDispatcher {
                         //If 3rd argument not specified then use 10
                         Integer numberOfInterviews = (commandSegments.size() >= 3 && Integer.valueOf(commandSegments[2]) >0)?Integer.valueOf(commandSegments[2]):10;
                         numberOfInterviews = (numberOfInterviews >25)?25:numberOfInterviews;
-                        cmdInterviews(context, numberOfInterviews, showOldInterviews);
+                        RecruitingFunctions.cmdInterviews(context, numberOfInterviews, showOldInterviews);
                     }
-                    when else { generateHelp(context); }
+                    when else { RecruitingFunctions.generateHelp(context); }
                 }
             }catch(Exception e){
                 RecruitingUtil.debug(e.getMessage());
@@ -63,25 +63,6 @@ public class RecruitingCommandDispatcher extends Slack.SlashCommandDispatcher {
         }
         
         
-        private void generateHelp(Slack.RequestContext context){
-            Slack.ViewReference viewReference = Slack.View.recruiting_help.get();
-            
-            //Use User client because message is started by user
-            //RecruitingUtilSlack.sendView(false, context.getChannelId(), viewReference);
-            RecruitingUtilSlack.sendView(context.getChannelId(), context.getUserId(), viewReference);
-        }
-
-        private void cmdInterviews(Slack.RequestContext context, Integer numberOfInterviews, Boolean showOldInterviews){
-
-            Slack.ViewReference viewReference = Slack.View.recruiting_cmd_interviews.get();
-            
-            viewReference.setParameter('interviewerId', UserInfo.getUserId());
-            viewReference.setParameter('showOldInterviews', showOldInterviews);
-            viewReference.setParameter('numberOfInterviews', numberOfInterviews);
-
-            //Use User client because message is started by user
-            //RecruitingUtilSlack.sendView(false, context.getChannelId(), viewReference);
-            RecruitingUtilSlack.sendView(context.getChannelId(), context.getUserId(), viewReference);
-        }
+        
     }
 }

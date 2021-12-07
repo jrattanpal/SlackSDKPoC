@@ -1,0 +1,20 @@
+<!-- wireGetRecordDynamicContact.html -->
+<template>
+    <template if:true={interview}>
+
+        <template if:true={error}>
+            <c-error-panel errors={error}></c-error-panel>
+        </template>
+
+
+        <template if:true={needInterviewConfirmation}>
+            <lightning-button variant="brand" label="Request Confirmation" onclick={notifyForConfirmation}></lightning-button>
+        </template>
+        <template if:true={needInterviewFeedback}>
+            <lightning-button variant="brand" label="Request Feedback" onclick={notifyForFeedback}></lightning-button>
+        </template>
+        <template if:true={needNoActons}>
+            No actions needed.
+        </template>
+    </template>
+</template>

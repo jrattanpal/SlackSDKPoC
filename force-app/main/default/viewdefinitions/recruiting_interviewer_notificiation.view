@@ -10,6 +10,15 @@ schema:
     message:
       type: string
       required: true
+    label:
+      type: string
+      defaultValue: "Confirm Interview"
+    action:
+      type: string
+      defaultValue: "interview_confirm"
+    dispatcher:
+      type: string
+      defaultValue: "ack"
 components:
   - definition: message
     components:
@@ -24,17 +33,17 @@ components:
         components:
           - definition: button
             properties:
-              label: "Confirm Interview"
+              label: "{!view.properties.label}"
               style: "primary"
-              name: "interview_confirm"
+              name: "{!view.properties.action}"
             events:
               onclick:
                 # definition maps to 'createRecord' apex class implementing Slack.ActionDispatcher
                 definition: "apex__action__RecruitingActionDispatcher"
                 properties:
-                  action: "interview_confirm"
+                  action: "{!view.properties.action}"
                   recordId: "{!view.properties.recordId}"
-                  dispatcher: "ack"
+                  dispatcher: "{!view.properties.dispatcher}"
       - definition: divider
         properties: {}
             

@@ -28,25 +28,6 @@ public with sharing class RecruitingInterviewTriggerHandler extends TriggerHandl
 
     @future
     private static void notifyInterviewerForNewInterview(String recordId, String salesforceUserId, String headerText ){
-        RecruitingUtil.Message msg;
-        try{
-
-            //Check to see if the interview record exists before trying it in view
-            Interview__c interview = RecruitingData.getInterviewDetails(recordId);
-            //text: "A new interview has been scheduled with {!interview.Contact__r.Name} for position {!interview.Position__r.Name} at {!interview.Date__c}"
-
-            String message = UserInfo.getName() +', a new interview has been scheduled with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '"';
-
-            Slack.ViewReference viewReference = Slack.View.recruiting_interviewer_notificiation.get();
-            viewReference.setParameter('headerText', headerText);
-            viewReference.setParameter('recordId', recordId);
-            viewReference.setParameter('message', message);
-             
-            RecruitingUtilSlack.sendView(RecruitingUtilSlack.getSlackUserId(salesforceUserId), null, viewReference);
-            msg = RecruitingUtil.Message.setMsg('Success', true);
-        }catch(Exception e){
-            msg = RecruitingUtil.Message.setMsg(e.getMessage(), false);
-        }
-        
+        RecruitingFunctions.notifyInterviewerForNewInterview(recordId, salesforceUserId, headerText);
     }
 }

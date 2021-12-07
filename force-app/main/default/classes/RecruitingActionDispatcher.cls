@@ -35,13 +35,13 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
             RecruitingUtil.Message msg;
             switch on action {
                 when 'interview_confirm' {
-                    msg = confirmInterview(recordId, 'Interview Confirmed');
+                    msg = RecruitingFunctions.confirmInterview(recordId, 'Interview Confirmed');
                 }
                 when 'interview_feedback' {
-                    msg = submitInterviewFeedback(context, recordId);
+                    msg = RecruitingFunctions.submitInterviewFeedback(context, recordId);
                 }
                 when 'refer_friend' {
-                    msg = referFriend(context, recordId);
+                    msg = RecruitingFunctions.referFriend(context, recordId);
                 }
                 when else { msg = RecruitingUtil.Message.setMsg('The action is not valid', false); }
             }
@@ -103,55 +103,5 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
         }
     }
 
-    public static RecruitingUtil.Message confirmInterview(Id recordId, String status){
-        Interview__c interview = RecruitingData.getInterviewDetails(recordId);
-        
-        // Make sure we can update the database before even trying
-        if (!Schema.sObjectType.Interview__c.fields.Status__c.isUpdateable()) {
-            return RecruitingUtil.setMsg('You do not have permission to update Interview status', false);
-        }
-        interview.Status__c = status;
-        update interview;
-
-        
-        return RecruitingUtil.setMsg('Interview with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '" has been Confirmed.', true);
-    }   
-    private static RecruitingUtil.Message submitInterviewFeedback (Slack.RequestContext context, String recordId) {
-        RecruitingUtil.Message msg;
-        // Make sure we can update the database before even trying
-        if (!Schema.sObjectType.Interview__c.fields.Feedback__c.isUpdateable() &&
-        !Schema.sObjectType.Interview__c.fields.Status__c.isUpdateable()) {
-            return RecruitingUtil.setMsg('You do not have permission to update Interview feedback', false);
-        }
-        Map <String, Object> formData = context.getFormData();
-
-        Interview__c interview = RecruitingData.getInterviewDetails(recordId);
-        interview.Feedback__c = (String) formData.get('Feedback__c');
-        interview.Status__c = 'Feedback Gathered';
-        update interview;
-        
-        
-        msg = RecruitingUtil.setMsg('Feedback for interview with "' + interview.Contact__r.Name + '" for position "' + interview.Position__r.Name + '" at "' + interview.Interview_Date__c + '" has been submitted.', true);
-        return msg;
-    }
-    private static RecruitingUtil.Message referFriend (Slack.RequestContext context, String recordId) {
-        RecruitingUtil.Message msg;
-        // Make sure we can update the database before even trying
-        if (!Schema.sObjectType.Referral__c.isCreateable() || !Schema.sObjectType.Referral__c.fields.Contact__c.isCreateable() ||
-        !Schema.sObjectType.Referral__c.fields.Position__c.isCreateable() ||
-        !Schema.sObjectType.Referral__c.fields.user__c.isCreateable()) {
-            return RecruitingUtil.setMsg('You do not have permission to submit referral', false);
-        }
-        Map <String, Object> formData = context.getFormData();
-
-        System.debug('formData:' + formData);
-        Referral__c referral = new Referral__c();
-        referral.Contact__c = (String) formData.get('contact_lookup');
-        referral.Position__c = (String) formData.get('position_lookup');
-        referral.User__c = UserInfo.getUserId();
-        insert referral;
-        
-        msg = RecruitingUtil.setMsg('Referral has been submitted: ' + URL.getSalesforceBaseUrl().toExternalForm() + '/' + referral.Id, true);
-        return msg;
-    }
+    
 }
