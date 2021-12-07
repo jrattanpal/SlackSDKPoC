@@ -34,6 +34,16 @@ public class RecruitingShortcutDispatcher extends Slack.ShortcutDispatcher {
                 when 'recruiting-interview-review-message-shortcut'{
                     viewReference = Slack.view.recruiting_refer_friend.get();
                     viewReference.setParameter('channelId', context.getchannelId());
+                    modalView = new Slack.ModalView.builder()
+                         .viewReference(viewReference)
+                         .build(); 
+                }
+                when 'recruiting-interview-review-global-shortcut'{
+                    viewReference = Slack.view.recruiting_refer_friend.get();
+                    viewReference.setParameter('channelId', context.getchannelId());
+                    modalView = new Slack.ModalView.builder()
+                         .viewReference(viewReference)
+                         .build(); 
                 }
                 when else { 
                     modalView = RecruitingMessageModal.getMessageModalView(
@@ -42,9 +52,6 @@ public class RecruitingShortcutDispatcher extends Slack.ShortcutDispatcher {
                     );
                 }
             }
-           modalView = new Slack.ModalView.builder()
-                .viewReference(viewReference)
-                .build(); 
             return modalView;
         }
     }
