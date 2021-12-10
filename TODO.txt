@@ -1,0 +1,2 @@
+- test for public vs private: WOrks
+- Test for Slack Connect: To be implemented by updating Bolt version for SLack SDK
