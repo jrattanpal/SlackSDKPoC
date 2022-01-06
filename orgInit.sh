@@ -9,11 +9,11 @@ sfdx force:data:tree:import --plan data/slack-demo-plan.json
 
 sfdx force:org:open
 
-# sfdx force:user:password:generate --targetusername test-xetytamuqybp@example.com 
-# qlki)or3ipuFe
+# sfdx force:user:password:generate --targetusername test-4r3qyik1uguc@example.com
+# jtnoresk6xJk*
 
 
-# sfdx force:user:display -u test-xetytamuqybp@example.com 
+# sfdx force:user:display -u test-4r3qyik1uguc@example.com
 # https://energy-saas-5826-dev-ed.cs43.my.salesforce.com
 
 
