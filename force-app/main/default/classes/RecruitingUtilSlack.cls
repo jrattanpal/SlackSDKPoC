@@ -2,8 +2,6 @@ public with sharing class RecruitingUtilSlack {
     
 	public class MissingTeamIdException extends Exception {}
 
-    private static String teamId = 'T02GGRQ8R0F';
-
     public static String getTeamId(){
         Recruiting_Slack_Settings__c  rss = Recruiting_Slack_Settings__c.getInstance();
         if(rss.Team_ID__c == null){
