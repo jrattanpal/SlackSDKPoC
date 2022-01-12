@@ -4,10 +4,7 @@ public with sharing class RecruitingFunctions {
         RecruitingUtil.Message msg;
 
         try{
-            System.debug('salesforceUserId:' + salesforceUserId);
-            System.debug('salesforceUserId:' + String.isEmpty(salesforceUserId));
             salesforceUserId = (String.isEmpty(salesforceUserId))?Userinfo.getUserId():salesforceUserId;
-            System.debug('salesforceUserId:' + salesforceUserId);
 
             //Check to see if the interview record exists before trying it in view
             Interview__c interview = RecruitingData.getInterviewDetails(recordId);
@@ -114,7 +111,7 @@ public with sharing class RecruitingFunctions {
         
         //Use User client because message is started by user
         //RecruitingUtilSlack.sendView(false, context.getChannelId(), viewReference);
-        RecruitingUtilSlack.sendView(context.getChannelId(), context.getUserId(), viewReference);
+        RecruitingUtilSlack.sendView(context, viewReference);
     }
 
     public static void cmdInterviews(Slack.RequestContext context, Integer numberOfInterviews, Boolean showOldInterviews){
@@ -127,6 +124,6 @@ public with sharing class RecruitingFunctions {
 
         //Use User client because message is started by user
         //RecruitingUtilSlack.sendView(false, context.getChannelId(), viewReference);
-        RecruitingUtilSlack.sendView(context.getChannelId(), context.getUserId(), viewReference);
+        RecruitingUtilSlack.sendView(context, viewReference);
     }
 }

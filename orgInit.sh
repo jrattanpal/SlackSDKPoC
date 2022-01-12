@@ -10,7 +10,7 @@ sfdx force:data:tree:import --plan data/slack-demo-plan.json
 sfdx force:org:open
 
 # sfdx force:user:password:generate --targetusername test-4r3qyik1uguc@example.com
-# jtnoresk6xJk*
+# ]zntvn9lRrifm
 
 
 # sfdx force:user:display -u test-4r3qyik1uguc@example.com

@@ -22,7 +22,8 @@ public class RecruitingShortcutDispatcher extends Slack.ShortcutDispatcher {
             this.context = context;
         }
         
-        public Slack.ModalView call () {    
+        public Slack.ModalView call () {   
+            System.debug('context::' + context); 
             Slack.ViewReference viewReference;
             Slack.ModalView modalView;
 

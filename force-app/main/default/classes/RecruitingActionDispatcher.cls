@@ -54,7 +54,7 @@ public with sharing class RecruitingActionDispatcher extends Slack.ActionDispatc
             if(context.getChannelId() == null && this.parameters.containsKey('channelId') && (this.parameters.get('channelId') != null)){
                 channelId = (String) this.parameters.get('channelId');
             }
-            RecruitingUtilSlack.sendText(channelId, msg.message);
+            RecruitingUtilSlack.sendText(this.context, channelId, msg.message);
             /* */
         }
     }

@@ -28,6 +28,7 @@ public class RecruitingCommandDispatcher extends Slack.SlashCommandDispatcher {
         }
         
         public void run () {    
+            System.debug('context::' + context);
             try{
                 String commandText = parameters.getText();
                 String[] commandSegments = (commandText != null)?commandText.split(' '):new List<String>();

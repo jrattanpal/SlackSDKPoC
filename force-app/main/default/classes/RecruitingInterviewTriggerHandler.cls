@@ -17,7 +17,7 @@ public with sharing class RecruitingInterviewTriggerHandler extends TriggerHandl
             Interview__c recNew = this.newMap.get(rec.Id);
             Interview__c recOld = this.oldMap.get(rec.Id);
             //If update Interviewer__c is not empty and HAS changed
-            if(recNew.Interviewer__c != null  && recNew.Interviewer__c != recOld.Interviewer__c){
+            if(recNew.Interviewer__c != null  && recNew.Interviewer__c != recOld.Interviewer__c && recNew.Status__c == 'Interview Scheduled'){
                 notifyInterviewerForNewInterview(rec.Id, recNew.Interviewer__c, 'New Interview Scheduled' );
             }
             //If candidate has been selected then create a channel and add users to it for any discussion

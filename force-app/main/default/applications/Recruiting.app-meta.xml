@@ -32,6 +32,7 @@
     <tabs>standard-Contact</tabs>
     <tabs>Position__c</tabs>
     <tabs>Interview__c</tabs>
+    <tabs>Referral__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Recruiting_UtilityBar</utilityBar>
 </CustomApplication>

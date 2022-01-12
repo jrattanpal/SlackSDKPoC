@@ -1,10 +1,15 @@
 public with sharing class RecruitingUtilSlack {
     
+	public class MissingTeamIdException extends Exception {}
 
     private static String teamId = 'T02GGRQ8R0F';
 
     public static String getTeamId(){
-        return teamId;
+        Recruiting_Slack_Settings__c  rss = Recruiting_Slack_Settings__c.getInstance();
+        if(rss.Team_ID__c == null){
+            throw new MissingTeamIdException('Update "Recruiting Slack Settings	" custom setting with workspace ID');
+        }
+        return rss.Team_ID__c;
     }
     //Recruiting.notifyWithSFUserId('0050U0000076saN', 'New Interview Scheduled', 'a030U000004odv2QAA', 'Interview__c');
     public static String getSlackUserId(String salesforceUserId){
@@ -14,13 +19,13 @@ public with sharing class RecruitingUtilSlack {
     }
 
      //Build message to be send with .viewReference() method for Slack.ChatPostMessageRequest
-     public static Boolean sendText(String slackUserId, String message){
+     public static Boolean sendText(Slack.RequestContext context, String slackUserId, String message){
         Slack.ChatPostMessageRequest req = new Slack.ChatPostMessageRequest.builder()
             .channel(slackUserId)
             .text(message)
             .build();
 
-            return send(req, null);
+            return send(context.getTeamId(), req, null);
     }
     //Build message to be send with .viewReference() method for Slack.ChatPostMessageRequest
     public static Boolean sendView(String channelId, String slackUserId, Slack.ViewReference viewReference){
@@ -29,11 +34,19 @@ public with sharing class RecruitingUtilSlack {
             .channel(channelId)
             .viewReference(viewReference)
             .build();
-        return send(req, slackUserId);
+        return send(getTeamId(), req, slackUserId);
+    }
+    //Build message to be send with .viewReference() method for Slack.ChatPostMessageRequest
+    public static Boolean sendView(Slack.RequestContext context, Slack.ViewReference viewReference){
+        Slack.ChatPostMessageRequest req = new Slack.ChatPostMessageRequest.builder()
+            .channel(context.getChannelId())
+            .viewReference(viewReference)
+            .build();
+        return send(context.getTeamId(), req, context.getUserId());
     }
 
 
-    public static Boolean send(Slack.ChatPostMessageRequest req, String slackUserId){
+    public static Boolean send(String teamId, Slack.ChatPostMessageRequest req, String slackUserId){
 
         Boolean retVal = false;
         Slack.App app = Slack.App.Recruiting.get();
