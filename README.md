@@ -11,6 +11,10 @@
 - Click "Manage Records" and New
 - Set "Team ID" with the Workplace ID of your slack worksplace where you want to test this app
   - Workplace ID (a.k.a. Team ID) Starts with "T"
+  - To find Team ID
+    - Go to WORKSPACE.slack.com (in browser)
+    - This should redirect you to something like https://app.slack.com/client/[T***]/.....
+    - THat number starting with T is Team ID
 ​
 - Install Slack app 
 ​
