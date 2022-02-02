@@ -13,6 +13,7 @@
     "sfdcLoginUrl": "https://jrtehub.my.salesforce.com",
     "sourceApiVersion": "53.0",
     "packageAliases": {
-        "SlackSDK PoC Recruiting 1": "0Ho6O000000oLkjSAE"
+        "SlackSDK PoC Recruiting 1": "0Ho6O000000oLkjSAE",
+        "SlackSDK PoC Recruiting 1@0.1.0-1": "04t6O000001J8kCQAS"
     }
 }
