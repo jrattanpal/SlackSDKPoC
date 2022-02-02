@@ -1,0 +1,20 @@
+[
+    {
+        "sobject": "secgenpkgtestjr__Position__c",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": ["slack-demo-Position__cs.json"]
+    },
+    {
+        "sobject": "Contact",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": ["slack-demo-Contact__cs.json"]
+    },
+    {
+        "sobject": "secgenpkgtestjr__Interview__c",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": ["slack-demo-Interview__cs.json"]
+    }
+]

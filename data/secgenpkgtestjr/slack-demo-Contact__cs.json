@@ -1,0 +1,40 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef1"
+            },
+            "Email": "jrattanpal@gmail.com",
+            "FirstName": "John",
+            "LastName": "Doe"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef2"
+            },
+            "Email": "jrattanpal@gmail.com",
+            "FirstName": "William",
+            "LastName": "Smith"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef3"
+            },
+            "Email": "jrattanpal@gmail.com",
+            "FirstName": "Jaswinder",
+            "LastName": "Rattanpal"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef4"
+            },
+            "Email": "jrattanpal@gmail.com",
+            "FirstName": "Vydianath",
+            "LastName": "Iyer"
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 {
   "orgName": "jrattanpal company",
   "edition": "Developer",
-  "features": ["EnableSetPasswordInApi","SLACK"],
+  "features": ["EnableSetPasswordInApi","SLACK","SLACKPACKAGING"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
@@ -9,5 +9,5 @@
     "mobileSettings": {
       "enableS1EncryptedStoragePref2": false
     }
-  }
+  } 
 }

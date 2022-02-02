@@ -1,0 +1,114 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef1"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef1",
+            "secgenpkgtestjr__Position__c": "@Position__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef2"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef1",
+            "secgenpkgtestjr__Position__c": "@Position__cRef2"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef3"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef2",
+            "secgenpkgtestjr__Position__c": "@Position__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef4"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef2",
+            "secgenpkgtestjr__Position__c": "@Position__cRef2"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef5"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef3",
+            "secgenpkgtestjr__Position__c": "@Position__cRef3"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef6"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef3",
+            "secgenpkgtestjr__Position__c": "@Position__cRef4"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef7"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef4",
+            "secgenpkgtestjr__Position__c": "@Position__cRef3"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef8"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef4",
+            "secgenpkgtestjr__Position__c": "@Position__cRef4"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef9"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef1",
+            "secgenpkgtestjr__Position__c": "@Position__cRef3"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Interview__c",
+                "referenceId": "Interview__cRef10"
+            },
+            "secgenpkgtestjr__Interview_Date__c": "2021-11-24T20:00:00.000+0000",
+            "secgenpkgtestjr__Interview_Type__c": "Recruiter Interview",
+            "secgenpkgtestjr__Status__c": "Applied",
+            "secgenpkgtestjr__Contact__c": "@ContactRef1",
+            "secgenpkgtestjr__Position__c": "@Position__cRef4"
+        }
+    ]
+}

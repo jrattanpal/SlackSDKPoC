@@ -1,12 +1,18 @@
 {
-  "packageDirectories": [
-    {
-      "path": "force-app",
-      "default": true
+    "packageDirectories": [
+        {
+            "path": "force-app",
+            "default": true,
+            "package": "SlackSDK PoC Recruiting 1",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT"
+        }
+    ],
+    "name": "SlackPilot",
+    "namespace": "secgenpkgtestjr",
+    "sfdcLoginUrl": "https://jrtehub.my.salesforce.com",
+    "sourceApiVersion": "53.0",
+    "packageAliases": {
+        "SlackSDK PoC Recruiting 1": "0Ho6O000000oLkjSAE"
     }
-  ],
-  "name": "SlackPilot",
-  "namespace": "",
-  "sfdcLoginUrl": "https://jrmdna171-dev-ed.lightning.my.salesforce.com",
-  "sourceApiVersion": "53.0"
 }

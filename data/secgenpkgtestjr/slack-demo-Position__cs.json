@@ -1,0 +1,44 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Position__c",
+                "referenceId": "Position__cRef1"
+            },
+            "Name": "ISV Platform Expert",
+            "secgenpkgtestjr__Fullfilment_Date_Limit__c": "2021-12-30",
+            "secgenpkgtestjr__Level__c": "Architect",
+            "secgenpkgtestjr__Status__c": "Open"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Position__c",
+                "referenceId": "Position__cRef2"
+            },
+            "Name": "ISV Technical Account Manager",
+            "secgenpkgtestjr__Fullfilment_Date_Limit__c": "2021-12-30",
+            "secgenpkgtestjr__Level__c": "Architect",
+            "secgenpkgtestjr__Status__c": "Open"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Position__c",
+                "referenceId": "Position__cRef3"
+            },
+            "Name": "Solution Engineer",
+            "secgenpkgtestjr__Fullfilment_Date_Limit__c": "2021-12-30",
+            "secgenpkgtestjr__Level__c": "Architect",
+            "secgenpkgtestjr__Status__c": "Open"
+        },
+        {
+            "attributes": {
+                "type": "secgenpkgtestjr__Position__c",
+                "referenceId": "Position__cRef4"
+            },
+            "Name": "Product Manager",
+            "secgenpkgtestjr__Fullfilment_Date_Limit__c": "2021-12-30",
+            "secgenpkgtestjr__Level__c": "Architect",
+            "secgenpkgtestjr__Status__c": "Open"
+        }
+    ]
+}

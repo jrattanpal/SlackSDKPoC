@@ -67,8 +67,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact.CNTC_FIRST_NAME</fields>
-        <fields>Contact.NAME</fields>
+        <fields>Contact__c</fields>
         <fields>Interview_Date__c</fields>
         <fields>Interview_Type__c</fields>
         <fields>Interviewer__c</fields>
@@ -100,7 +99,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h63000005DNfc</masterLabel>
+        <masterLabel>00h17000008jncq</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

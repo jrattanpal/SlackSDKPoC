@@ -6,7 +6,7 @@
     <masterLabel>Interview</masterLabel>
     <recordTypeContext>Master</recordTypeContext>
     <recordTypeName>__MASTER__</recordTypeName>
-    <sobjectType>Interview__c</sobjectType>
-    <targetField>Status__c</targetField>
+    <sobjectType>secgenpkgtestjr__Interview__c</sobjectType>
+    <targetField>secgenpkgtestjr__Status__c</targetField>
     <targetFieldChangeToValues>Selected</targetFieldChangeToValues>
 </AnimationRule>

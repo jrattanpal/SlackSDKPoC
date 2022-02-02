@@ -66,6 +66,14 @@
                 <behavior>Edit</behavior>
                 <field>Email</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AssistantName</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AssistantPhone</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -139,6 +147,44 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <quickActionList>
+        <quickActionListItems>
+            <quickActionName>FeedItem.TextPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.ContentPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>NewTask</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>LogACall</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>NewCase</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>NewNote</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>NewEvent</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.RypplePost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.LinkPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.PollPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.QuestionPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>SendEmail</quickActionName>
+        </quickActionListItems>
+    </quickActionList>
     <relatedContent>
         <relatedContentItems>
             <layoutItem>
@@ -154,8 +200,9 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Status__c</fields>
-        <fields>Interviewer__c</fields>
+        <fields>Interview_Type__c</fields>
+        <fields>Interview_Date__c</fields>
+        <fields>Position__c</fields>
         <relatedList>Interview__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -220,7 +267,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h17000008jncs</masterLabel>
+        <masterLabel>00h170000092kXs</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
