@@ -6,9 +6,9 @@ import notifyInterviewerForFeedback from '@salesforce/apex/RecruitingFunctions.n
 
 
 const FIELDS = [
-    'Interview__c.Status__c',
-    'Interview__c.Feedback__c',
-    'Interview__c.Interviewer__c'
+    'secgenpkgtestjr__Interview__c.secgenpkgtestjr__Status__c',
+    'secgenpkgtestjr__Interview__c.secgenpkgtestjr__Feedback__c',
+    'secgenpkgtestjr__Interview__c.secgenpkgtestjr__Interviewer__c'
 ];
 
 export default class RecruitingInterviewNotification extends LightningElement {
@@ -28,11 +28,11 @@ export default class RecruitingInterviewNotification extends LightningElement {
         if (data) {
             this.interview = data;
             this.error = undefined;
-            
-            //Use Getters for Status, interviewer and feedback
-            this.needInterviewConfirmation = (this.status == 'Interview Scheduled' && this.interviewer != null)?true:false;
-            this.needInterviewFeedback = (this.status == 'Interview Completed' && this.feedback == null)?true:false;
+            let status = this.interview.fields.secgenpkgtestjr__Status__c.value;
 
+            //Use Getters for Status, interviewer and feedback
+            this.needInterviewConfirmation = (status == 'Interview Scheduled' && this.interview.fields.secgenpkgtestjr__Interviewer__c != null)?true:false;
+            this.needInterviewFeedback = (status == 'Interview Completed' && this.interview.fields.secgenpkgtestjr__Feedback__c.value == null)?true:false;
             this.needNoActons = (this.needInterviewConfirmation || this.needInterviewFeedback)?false:true;
         } else if (error) {
             this.error = error;
