@@ -1,9 +1,9 @@
 # Slack SDK Pilot
-​Demo: https://drive.google.com/file/d/1Bor9WY-dTr0vKAWOXvDq7ijYDOCN3BYI/view
+
 
 Salesforce Slack SDK for AppExchange Partners: https://salesforce.vidyard.com/watch/MJMJqu2x3PuLVdWoVzke2r?
 
-How to extend an AppExchange solution with Salesforce Slack SDK: https://salesforce.vidyard.com/watch/4zzgPYmVbqv3d8YoSfR9iY?
+(Demo with Technical Details) How to extend an AppExchange solution with Salesforce Slack SDK: https://salesforce.vidyard.com/watch/4zzgPYmVbqv3d8YoSfR9iY?
 
 
 Slack (SDK) documentation for ISVS: https://dxv59a8vfm5tm.cloudfront.net/foyer/guide/overview.html
