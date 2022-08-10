@@ -35,7 +35,7 @@ Slack (SDK) documentation for ISVS: https://dxv59a8vfm5tm.cloudfront.net/foyer/g
     - This will return user information including password
     - Save this as you may need this again
 - Use following distribution link in your workspace (or Enterprise Grid sandbox)
-  - https://slack.com/oauth/v2/authorize?client_id=2560874297015.2764151570580&scope=channels:history,channels:manage,channels:read,chat:write,chat:write.customize,chat:write.public,commands,groups:history,groups:read,groups:write,im:history,im:write,reactions:read,users.profile:read,users:read,users:read.email,users:write&user_scope=chat:write,im:write,reactions:read,users.profile:read,users:read,users:read.email
+  - https://slack.com/oauth/v2/authorize?client_id=256082474297015.2764151570580&scope=channels:history,channels:manage,channels:read,chat:write,chat:write.customize,chat:write.public,commands,groups:history,groups:read,groups:write,im:history,im:write,reactions:read,users.profile:read,users:read,users:read.email,users:write&user_scope=chat:write,im:write,reactions:read,users.profile:read,users:read,users:read.email
   - Permissions maybe overkill but this is test app. This will eventually be cleaned.
   - After you have logged in, it will prompt you to allow permissions to Slack app
 - Once app is installed, try to run a recruiting command/shortcut (eg: /recruiting)
